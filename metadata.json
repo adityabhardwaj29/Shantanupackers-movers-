@@ -1,0 +1,6 @@
+{
+  "name": "Shantanu Packers and Movers",
+  "description": "Professional relocation and logistics website for Shantanu Packers and Movers with instant quotes, service catalog, gallery, and Supabase integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
