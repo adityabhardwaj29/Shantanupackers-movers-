@@ -179,16 +179,25 @@ END;
 $$;
 
 -- ============================================================================
--- 7. DATABASE WEBHOOK CONFIGURATION: STN-booking-webhook
+-- 7. ARCHITECTURE: OPTION A (Clean Single Path — No Recursive Webhook)
 -- ============================================================================
--- Configuration Parameters:
--- Webhook Name: STN-booking-webhook
--- Table: public.quote_requests
--- Events: INSERT
--- Webhook URL: https://jhwrxhurouuoformarxq.supabase.co/functions/v1/submit-quote
--- HTTP Method: POST
--- HTTP Headers:
---   Content-Type: application/json
---   Authorization: Bearer <SUPABASE_ANON_KEY>
+-- 
+-- ACTIVE ARCHITECTURE:
+--   Customer → Website → submit-quote → DB INSERT → Resend Email
+--
+-- DO NOT create a webhook that calls submit-quote after INSERT.
+-- This causes an infinite loop:
+--   submit-quote → INSERT → Webhook → submit-quote → INSERT → ...
+--
+-- ACTION REQUIRED:
+--   If the Supabase Database Webhook "STN-booking-webhook" exists and
+--   targets the "submit-quote" function, DELETE IT immediately:
+--   
+--   Dashboard → Database → Webhooks → STN-booking-webhook → Delete
+--
+-- If you want a webhook for email-only notification in the future,
+-- create a SEPARATE function "send-quote-email" that READS quote_requests
+-- and sends email — it must NEVER insert into quote_requests.
 -- ============================================================================
+
 
