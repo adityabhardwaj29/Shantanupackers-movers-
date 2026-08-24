@@ -177,3 +177,18 @@ BEGIN
   END IF;
 END;
 $$;
+
+-- ============================================================================
+-- 7. DATABASE WEBHOOK CONFIGURATION: STN-booking-webhook
+-- ============================================================================
+-- Configuration Parameters:
+-- Webhook Name: STN-booking-webhook
+-- Table: public.quote_requests
+-- Events: INSERT
+-- Webhook URL: https://jhwrxhurouuoformarxq.supabase.co/functions/v1/submit-quote
+-- HTTP Method: POST
+-- HTTP Headers:
+--   Content-Type: application/json
+--   Authorization: Bearer <SUPABASE_ANON_KEY>
+-- ============================================================================
+
