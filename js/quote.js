@@ -107,7 +107,7 @@
     const movingTime = document.getElementById('quote-moving-time')?.value || 'Morning (7:30 AM - 10:30 AM)';
     const vehicleType = document.getElementById('quote-vehicle-type')?.value || '2 BHK Family Move';
     const floorNumber = document.getElementById('quote-floor')?.value || 'Ground Floor';
-    const liftAvailable = document.getElementById('quote-lift')?.value === 'true' ? 'Lift Available' : 'No Lift';
+    const liftAvailable = document.getElementById('quote-lift')?.value === 'true';
     const serviceType = document.getElementById('quote-service-type')?.value || 'Household Shifting';
     const notes = document.getElementById('quote-notes')?.value.trim() || 'Standard Household Inventory';
 
@@ -121,7 +121,7 @@
       movingTime,
       vehicleType,
       floorNumber,
-      liftAvailable,
+      liftAvailable,  // boolean: true | false
       serviceType,
       notes
     };
@@ -206,19 +206,40 @@
       service_type: data.serviceType,
       vehicle_type: data.vehicleType,
       floor_number: data.floorNumber,
-      lift_available: true,
+      lift_available: Boolean(data.liftAvailable), // Fixed: reads actual user selection
       packing_required: 'Full Professional 4-Layer Packaging',
       additional_notes: data.notes
     };
 
     try {
+      let result = { success: false, quoteId: quoteId, message: '' };
       if (window.ShantanuDB) {
-        await window.ShantanuDB.submitQuoteRequest(quotePayload);
+        result = await window.ShantanuDB.submitQuoteRequest(quotePayload);
       }
-      displayQuoteSuccessReceipt(quotePayload);
+
+      if (result.success) {
+        // Use the server-confirmed quote ID (may differ from client-generated)
+        quotePayload.quote_id = result.quoteId || quoteId;
+        displayQuoteSuccessReceipt(quotePayload);
+      } else {
+        // Show user-visible error — do NOT show success receipt on failure
+        const errorEl = document.createElement('div');
+        errorEl.id = 'quote-error-msg';
+        errorEl.style.cssText = 'background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:1rem;margin-top:1rem;color:#dc2626;font-weight:600;font-size:0.9rem;text-align:center;';
+        errorEl.innerHTML = `⚠️ ${result.message || 'Submission failed. Please call us at <a href="tel:+918218059678" style="color:#dc2626">+91 8218059678</a>.'}`;
+        const existingErr = document.getElementById('quote-error-msg');
+        if (existingErr) existingErr.remove();
+        const formEl = document.getElementById('shantanu-quote-form');
+        if (formEl) formEl.appendChild(errorEl);
+      }
     } catch (err) {
-      console.warn('Submission saved locally:', err);
-      displayQuoteSuccessReceipt(quotePayload);
+      console.warn('Unexpected submission error:', err);
+    } finally {
+      // Always restore button state so user can retry
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
     }
   }
 

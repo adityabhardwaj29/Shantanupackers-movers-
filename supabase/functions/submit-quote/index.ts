@@ -17,7 +17,7 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const NOTIFICATION_EMAIL = Deno.env.get("NOTIFICATION_EMAIL") || "shantanupackers@gmail.com";
 const RESEND_FROM_EMAIL = Deno.env.get("RESEND_FROM_EMAIL") || "Shantanu Movers <onboarding@resend.dev>";
 
-// Strict CORS Origin Allowlist
+/// Strict CORS Origin Allowlist
 const ALLOWED_ORIGINS = new Set([
   "https://www.shantanupackers.com",
   "https://shantanupackers.com",
@@ -32,21 +32,34 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 
 /**
- * Determine CORS headers based on the incoming request origin
+ * Determine CORS headers based on the incoming request origin.
+ * Uses exact hostname matching — never substring includes — to prevent
+ * bypass attacks like evilocalhost.com or evilshantanu.com.
  */
 function getCorsHeaders(req: Request): Record<string, string> {
   const origin = req.headers.get("origin") || "";
-  const isAllowed = 
-    ALLOWED_ORIGINS.has(origin) ||
-    origin.endsWith(".vercel.app") ||
-    origin.includes("localhost") ||
-    origin.includes("127.0.0.1") ||
-    origin.toLowerCase().includes("shantanu");
+  let isAllowed = ALLOWED_ORIGINS.has(origin);
+
+  // Allow *.vercel.app preview deployments (exact hostname suffix check)
+  if (!isAllowed && origin) {
+    try {
+      const url = new URL(origin);
+      const hostname = url.hostname;
+      // Allow Vercel preview deployments
+      if (hostname.endsWith(".vercel.app")) isAllowed = true;
+      // Allow localhost / 127.0.0.1 with any port (development only)
+      if (hostname === "localhost" || hostname === "127.0.0.1") isAllowed = true;
+      // Allow *.shantanupackers.com and *.shantanupackersandmovers.com subdomains
+      if (hostname.endsWith(".shantanupackers.com") || hostname.endsWith(".shantanupackersandmovers.com")) isAllowed = true;
+    } catch {
+      isAllowed = false;
+    }
+  }
 
   return {
     "Access-Control-Allow-Origin": isAllowed && origin ? origin : "https://www.shantanupackers.com",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-webhook-secret",
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
     "Access-Control-Max-Age": "86400",
   };
 }
@@ -379,9 +392,9 @@ Deno.serve(async (req: Request) => {
     const cleanPacking = String(packing_required || "Full Professional Packing").trim().slice(0, 100);
     const cleanNotes = String(additional_notes || "").trim().slice(0, 2000);
 
-    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
-                     req.headers.get("cf-connecting-ip") || 
-                     "unknown";
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("cf-connecting-ip") ||
+      "unknown";
     const userAgent = req.headers.get("user-agent")?.slice(0, 500) || "unknown";
 
     // 6. Initialize Supabase Admin Client

@@ -247,7 +247,7 @@
         moving_date: data.date,
         moving_time: data.time,
         service_type: data.service,
-        vehicle_type: data.service,
+        vehicle_type: 'Standard Move', // Hero form doesn't have vehicle picker; use safe default
         floor_number: 'Ground / Lift',
         lift_available: true,
         packing_required: '4-Layer Packaging',

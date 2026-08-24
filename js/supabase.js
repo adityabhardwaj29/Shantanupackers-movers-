@@ -3,6 +3,18 @@
  * SHANTANU PACKERS AND MOVERS - OFFICIAL CLIENT DATA LAYER & SUPABASE ADAPTER
  * Production-Grade Pure Vanilla JavaScript (Client-Safe, No Secret Leakage)
  * Govt. MSME Enterprise: UDYAM-MH-17-0244739
+ *
+ * ARCHITECTURE: OPTION A — Edge Function Only
+ * Website -> Edge Function -> DB Insert -> Resend Email
+ *
+ * INTENTIONALLY REMOVED: Direct Supabase client INSERT fallback
+ * Reason: If Edge Function inserts, then Direct Insert also runs = 2 rows.
+ * If webhook is active: Direct Insert -> Webhook -> Edge Function email = OK
+ * But if both run: Edge Function insert + Direct Insert = 2 rows + 2 emails.
+ * The ONLY correct approach is: ONE path, ONE insert, ONE email.
+ *
+ * If Edge Function fails: show user an error, save to local backup only.
+ * Local backup is purely for logging — it is NOT auto-submitted.
  * ============================================================================
  */
 
@@ -15,30 +27,25 @@ const DEFAULT_SUPABASE_CONFIG = {
 
 const SUPABASE_CONFIG = Object.assign({}, DEFAULT_SUPABASE_CONFIG, window.SUPABASE_CONFIG || {});
 
-let supabaseClient = null;
-
 /**
- * Initialize or retrieve official Supabase JS Client
+ * Initialize or retrieve official Supabase JS Client (read-only use only - no INSERT from client)
  */
 function getSupabaseClient() {
-  if (supabaseClient) return supabaseClient;
-
   if (
     typeof window.supabase !== 'undefined' &&
     SUPABASE_CONFIG.url &&
     SUPABASE_CONFIG.url.startsWith('http')
   ) {
     try {
-      supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
-      return supabaseClient;
+      return window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
     } catch (e) {
-      console.warn('Supabase initialization note:', e);
+      console.warn('Supabase client initialization note:', e);
     }
   }
   return null;
 }
 
-// In-flight locking & in-memory set to prevent double clicks & rapid duplicate submissions
+// In-flight locking & idempotency guard — prevents double-click and race conditions
 const activeSubmissions = new Set();
 const completedQuotes = new Set();
 
@@ -52,7 +59,7 @@ function generateQuoteId() {
 }
 
 /**
- * Client-Side Input Sanitizer for defense-in-depth
+ * Client-Side Input Sanitizer for defense-in-depth (XSS prevention layer)
  */
 function sanitizeInput(input) {
   if (input === null || input === undefined) return '';
@@ -63,31 +70,37 @@ function sanitizeInput(input) {
 }
 
 /**
- * Submits a quote request to Supabase.
- * Architecture Pipeline:
- * 1. Client locks form to prevent rapid double-clicks.
- * 2. Prepares sanitized payload with unique Quote ID (STN-YYYY-XXXXXX).
- * 3. Dispatches to Supabase Edge Function `submit-quote` (Server-side validation, rate limit, DB insert, Resend email).
- * 4. Falls back to direct DB insert (RLS protected) or local backup queue if Edge Function is unreachable.
- * 5. Guarantees EXACTLY ONE database row per customer submission.
+ * Submits a quote request to Supabase Edge Function.
+ *
+ * GUARANTEED SINGLE-ROW ARCHITECTURE:
+ * 1. Frontend locks submission button to prevent double-clicks.
+ * 2. Generates unique Quote ID (STN-YYYY-XXXXXX).
+ * 3. Sends ONE POST request to Edge Function.
+ * 4. Edge Function: validates -> checks duplicate -> inserts 1 row -> sends email.
+ * 5. If webhook (STN-booking-webhook) fires on INSERT: Edge Function detects it
+ *    via body.type === "INSERT" and ONLY sends email (no second DB insert).
+ * 6. If Edge Function unreachable: saves to localStorage only (no silent DB insert).
+ *
+ * NO FALLBACK DB INSERT — this is intentional to prevent duplicate rows.
  */
 async function submitQuoteRequest(data) {
   const cleanPhone = String(data.phone || '').replace(/[^0-9]/g, '');
   const quoteId = data.quote_id || generateQuoteId();
-  const submissionKey = `${cleanPhone}_${data.pickup_location}_${data.drop_location}`;
+  const submissionKey = `${cleanPhone}_${String(data.pickup_location || '').slice(0, 30)}_${String(data.drop_location || '').slice(0, 30)}`;
 
-  // 1. Double-click & rapid re-submission guard
+  // 1. Double-click & rapid re-submission guard (client-side only, not trusted server-side)
   if (completedQuotes.has(quoteId) || activeSubmissions.has(submissionKey)) {
     return {
       success: true,
       quoteId: quoteId,
       isDuplicate: true,
-      message: 'Quote request already received.'
+      message: 'Quote request already received. Our team will contact you shortly.'
     };
   }
 
   activeSubmissions.add(submissionKey);
 
+  // 2. Prepare sanitized payload
   const cleanPayload = {
     quote_id: quoteId,
     full_name: sanitizeInput(data.full_name || data.fullName),
@@ -106,89 +119,76 @@ async function submitQuoteRequest(data) {
   };
 
   try {
-    const isConfigured = SUPABASE_CONFIG.url && 
-                         SUPABASE_CONFIG.url.startsWith('http');
+    // 3. Single insertion path: Edge Function ONLY
+    // This is the ONLY place a DB row is created. No fallback DB insert below.
+    const edgeFunctionUrl = `${SUPABASE_CONFIG.url}/functions/v1/submit-quote`;
 
-    if (isConfigured) {
-      // Route 1: Edge Function (Option A - Primary Production Pipeline)
-      const edgeFunctionUrl = `${SUPABASE_CONFIG.url}/functions/v1/submit-quote`;
-      try {
-        const response = await fetch(edgeFunctionUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': SUPABASE_CONFIG.anonKey,
-            'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`
-          },
-          body: JSON.stringify(cleanPayload)
-        });
+    const response = await fetch(edgeFunctionUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_CONFIG.anonKey,
+        'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`
+      },
+      body: JSON.stringify(cleanPayload)
+    });
 
-        if (response.ok) {
-          const result = await response.json();
-          completedQuotes.add(quoteId);
-          saveToLocalBackup(cleanPayload);
-          activeSubmissions.delete(submissionKey);
-          return {
-            success: true,
-            quoteId: result.quote_id || quoteId,
-            source: 'edge_function',
-            message: result.message || 'Quote registered successfully.'
-          };
-        }
-      } catch (edgeErr) {
-        console.warn('Edge Function endpoint notice:', edgeErr);
-      }
+    if (response.ok) {
+      const result = await response.json();
+      const finalQuoteId = result.quote_id || quoteId;
 
-      // Route 2: Direct Supabase Client DB Insert Fallback (if Edge Function is offline)
-      const client = getSupabaseClient();
-      if (client) {
-        try {
-          const { error: dbError } = await client
-            .from('quote_requests')
-            .insert([cleanPayload]);
+      completedQuotes.add(finalQuoteId);
+      activeSubmissions.delete(submissionKey);
+      saveToLocalBackup({ ...cleanPayload, quote_id: finalQuoteId });
 
-          if (!dbError) {
-            completedQuotes.add(quoteId);
-            saveToLocalBackup(cleanPayload);
-            activeSubmissions.delete(submissionKey);
-            return {
-              success: true,
-              quoteId: quoteId,
-              source: 'supabase_direct'
-            };
-          }
-        } catch (clientErr) {
-          console.warn('Direct client insert notice:', clientErr);
-        }
-      }
+      return {
+        success: true,
+        quoteId: finalQuoteId,
+        source: 'edge_function',
+        message: result.message || 'Quote registered successfully.'
+      };
     }
 
-    // Route 3: Resilient Local Storage Backup (if offline or during network drop)
-    saveToLocalBackup(cleanPayload);
-    completedQuotes.add(quoteId);
+    // Edge Function returned HTTP error (4xx / 5xx)
+    let errorMessage = 'Quote submission failed. Please call us at +91 8218059678.';
+    try {
+      const errBody = await response.json();
+      if (errBody && errBody.error) {
+        // Return user-visible errors (validation) but not internal errors
+        if (response.status === 400 || response.status === 429) {
+          errorMessage = errBody.error;
+        }
+      }
+    } catch { /* ignore parse error */ }
+
     activeSubmissions.delete(submissionKey);
+    saveToLocalBackup(cleanPayload); // Save locally so no customer data is lost
 
     return {
-      success: true,
+      success: false,
       quoteId: quoteId,
-      source: 'local_storage',
-      message: 'Quote registered in local queue.'
+      source: 'edge_function_error',
+      message: errorMessage
     };
 
-  } catch (err) {
-    saveToLocalBackup(cleanPayload);
-    completedQuotes.add(quoteId);
+  } catch (networkErr) {
+    // Network failure (offline / CORS / timeout)
+    console.warn('Edge Function network error - saving locally:', networkErr?.message);
     activeSubmissions.delete(submissionKey);
+    saveToLocalBackup(cleanPayload);
+
     return {
-      success: true,
+      success: false,
       quoteId: quoteId,
-      source: 'local_storage'
+      source: 'network_error',
+      message: 'Network error. Please check your connection or call us at +91 8218059678.'
     };
   }
 }
 
 /**
- * Persist submission to browser local storage so inquiries are never lost
+ * Persist submission to browser localStorage — audit trail only.
+ * This data is NOT automatically re-submitted. It's for offline reference.
  */
 function saveToLocalBackup(quote) {
   try {
@@ -201,7 +201,7 @@ function saveToLocalBackup(quote) {
     });
     localStorage.setItem(storageKey, JSON.stringify(existing.slice(0, 50)));
   } catch {
-    // Local storage restricted or full
+    // localStorage restricted or full — silently skip
   }
 }
 
