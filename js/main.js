@@ -13,7 +13,11 @@
     initChecklist();
     initGalleryFilter();
     initHeroNormalQuoteForm();
+    initScrollReveal();
+    initActiveNavLink();
+    initHeaderScrollEffect();
   });
+
 
   /**
    * Initialize Lucide Icons via CDN
@@ -301,4 +305,79 @@
       });
     }
   }
+
+  /**
+   * Scroll Reveal — IntersectionObserver for .fade-in-up and .fade-in elements
+   * Elements with these classes animate into view as the user scrolls
+   */
+  function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: make everything visible immediately
+      document.querySelectorAll('.fade-in-up, .fade-in').forEach(el => {
+        el.classList.add('visible');
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.fade-in-up, .fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  /**
+   * Active Nav Link — marks the current page's nav link as active
+   * based on the URL pathname
+   */
+  function initActiveNavLink() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // Desktop nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+
+    // Mobile nav links
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  /**
+   * Header Scroll Effect — adds shadow and backdrop blur to header on scroll
+   */
+  function initHeaderScrollEffect() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    const onScroll = () => {
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // trigger on load
+  }
+
 })();
+

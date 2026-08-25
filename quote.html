@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ui-enhancements.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="js/supabase.js" defer></script>
@@ -26,17 +27,17 @@
     <div class="container top-bar-inner">
       <div class="top-bar-left">
         <div class="top-bar-item highlight">
-          <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i>
+          <i data-lucide="shield-check"></i>
           <span>Govt. MSME Registered: <strong>UDYAM-MH-17-0244739</strong></span>
         </div>
       </div>
       <div class="top-bar-right">
         <a href="tel:+918218059678" class="top-bar-phone">
-          <i data-lucide="phone-call" style="width: 14px; height: 14px;"></i>
+          <i data-lucide="phone-call"></i>
           <span>+91 8218059678</span>
         </a>
         <a href="tel:+919371482180" class="top-bar-phone">
-          <i data-lucide="phone" style="width: 14px; height: 14px;"></i>
+          <i data-lucide="phone"></i>
           <span>+91 9371482180</span>
         </a>
       </div>
@@ -65,7 +66,7 @@
 
       <div class="nav-actions">
         <a href="quote.html" class="btn btn-primary btn-sm">
-          <i data-lucide="calendar-check" style="width: 15px; height: 15px;"></i>
+          <i data-lucide="calendar-check"></i>
           <span>Book a Move</span>
         </a>
         <button type="button" class="hamburger-btn" id="btn-hamburger" aria-label="Open Menu"><i data-lucide="menu"></i></button>
@@ -84,22 +85,22 @@
             <span class="logo-subtitle">PACKERS &amp; MOVERS</span>
           </div>
         </div>
-        <button type="button" class="btn-outline btn-sm" id="btn-close-drawer" aria-label="Close Navigation" title="Close Navigation" style="padding: 0.4rem; min-height: auto; border-radius: 50%;">
+        <button type="button" class="btn-outline btn-sm" id="btn-close-drawer" aria-label="Close Navigation" title="Close Navigation">
           <i data-lucide="x"></i>
         </button>
       </div>
       <div class="mobile-nav-links">
-        <a href="index.html" class="mobile-nav-link">Home <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
-        <a href="about.html" class="mobile-nav-link">About Us <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
-        <a href="services.html" class="mobile-nav-link">Relocation Services <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
-        <a href="gallery.html" class="mobile-nav-link">Moving Gallery <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
-        <a href="pricing.html" class="mobile-nav-link">Rates & Pricing <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
-        <a href="contact.html" class="mobile-nav-link">Contact <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
-        <a href="terms-and-conditions.html" class="mobile-nav-link">Terms & Conditions <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
-        <a href="privacy-policy.html" class="mobile-nav-link">Privacy Policy <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
+        <a href="index.html" class="mobile-nav-link">Home <i data-lucide="chevron-right"></i></a>
+        <a href="about.html" class="mobile-nav-link">About Us <i data-lucide="chevron-right"></i></a>
+        <a href="services.html" class="mobile-nav-link">Relocation Services <i data-lucide="chevron-right"></i></a>
+        <a href="gallery.html" class="mobile-nav-link">Moving Gallery <i data-lucide="chevron-right"></i></a>
+        <a href="pricing.html" class="mobile-nav-link">Rates & Pricing <i data-lucide="chevron-right"></i></a>
+        <a href="contact.html" class="mobile-nav-link">Contact <i data-lucide="chevron-right"></i></a>
+        <a href="terms-and-conditions.html" class="mobile-nav-link">Terms & Conditions <i data-lucide="chevron-right"></i></a>
+        <a href="privacy-policy.html" class="mobile-nav-link">Privacy Policy <i data-lucide="chevron-right"></i></a>
       </div>
-      <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--slate-200); display: flex; flex-direction: column; gap: 0.75rem;">
-        <a href="quote.html" class="btn btn-primary active" style="width: 100%;">
+      <div class="drawer-cta-block">
+        <a href="quote.html" class="btn btn-primary active w-full">
           Get Free Binding Quote
         </a>
       </div>
@@ -108,11 +109,11 @@
 
   <main>
     <!-- Header Banner -->
-    <section style="background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%); color: var(--white); padding: 3.5rem 0; text-align: center;">
+    <section class="page-hero">
       <div class="container">
         <span class="badge badge-orange">Guaranteed Zero Hidden Surcharges</span>
-        <h1 style="font-size: 2.5rem; font-weight: 900; margin-top: 0.5rem; color: var(--white);">Book Your Move & Get Official Quote</h1>
-        <p style="color: var(--slate-300); max-width: 650px; margin: 0.5rem auto 0 auto; font-size: 1rem; line-height: 1.6;">
+        <h1 class="page-hero-title">Book Your Move &amp; Get Official Quote</h1>
+        <p class="page-hero-subtitle">
           Complete the details below to receive a 100% written binding quote with 4-layer packaging standards and live GPS fleet tracking.
         </p>
       </div>
@@ -123,40 +124,40 @@
       <div class="container" style="max-width: 960px;">
         
         <!-- Booking Form Card -->
-        <div class="hero-survey-card" id="quote-form-card" style="box-shadow: var(--shadow-xl); border: 1.5px solid var(--slate-200); padding: 2.5rem;">
+        <div class="quote-form-card" id="quote-form-card">
           
           <form id="shantanu-quote-form">
             <!-- Step 1: Personal & Contact Information -->
-            <div style="margin-bottom: 2rem;">
-              <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Step 1: Contact Details</span>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--slate-900); margin-bottom: 1rem;">Customer & Contact Details</h3>
+            <div class="form-section-block">
+              <span class="badge badge-emerald">Step 1: Contact Details</span>
+              <h3 class="form-section-title">Customer &amp; Contact Details</h3>
 
-              <div class="form-row form-row-3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+              <div class="form-row form-row-3">
                 <div class="form-group">
-                  <label class="form-label" for="quote-full-name">Full Name <span style="color: var(--primary);">*</span></label>
+                  <label class="form-label" for="quote-full-name">Full Name <span class="required-star">*</span></label>
                   <input type="text" class="form-control" id="quote-full-name" placeholder="e.g. Rajesh Patil" required>
                 </div>
                 
                 <div class="form-group">
-                  <label class="form-label" for="quote-phone">Mobile No <span style="color: var(--primary);">*</span></label>
+                  <label class="form-label" for="quote-phone">Mobile No <span class="required-star">*</span></label>
                   <input type="tel" class="form-control" id="quote-phone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" maxlength="10" required>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="quote-email">Email Address <span style="color: var(--primary);">*</span></label>
+                  <label class="form-label" for="quote-email">Email Address <span class="required-star">*</span></label>
                   <input type="email" class="form-control" id="quote-email" placeholder="e.g. rajesh.patil@gmail.com" required>
                 </div>
               </div>
             </div>
 
             <!-- Step 2: Route & Move Service Selection -->
-            <div style="margin-bottom: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--slate-200);">
-              <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Step 2: Service & Location</span>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--slate-900); margin-bottom: 1rem;">Relocation Service & Route</h3>
+            <div class="form-section-block">
+              <span class="badge badge-emerald">Step 2: Service &amp; Location</span>
+              <h3 class="form-section-title">Relocation Service &amp; Route</h3>
 
               <!-- Service Choose -->
-              <div class="form-group" style="margin-bottom: 1.25rem;">
-                <label class="form-label" for="quote-service-type">Service Choose <span style="color: var(--primary);">*</span></label>
+              <div class="form-group">
+                <label class="form-label" for="quote-service-type">Service Choose <span class="required-star">*</span></label>
                 <select class="form-control" id="quote-service-type" required>
                   <option value="Household Shifting" selected>Household Shifting (1 RK / 1 BHK / 2 BHK / 3+ BHK)</option>
                   <option value="Office Shifting & Corporate Move">Office Shifting & Corporate Move</option>
@@ -172,9 +173,9 @@
               </div>
 
               <!-- Move Size Selector Grid -->
-              <div style="margin-bottom: 1.25rem;">
+              <div class="form-group">
                 <label class="form-label">Move Size / Inventory Scale</label>
-                <div class="visual-size-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem;" id="visual-size-selector">
+                <div class="visual-size-grid" id="visual-size-selector">
                   <div class="visual-size-card" data-size="1 RK / Single Room" style="border: 2px solid var(--slate-200); border-radius: var(--radius); padding: 1rem 0.75rem; text-align: center; cursor: pointer; transition: all 0.2s ease;">
                     <i data-lucide="home" style="width: 22px; height: 22px; margin: 0 auto 0.5rem auto; color: var(--slate-600);"></i>
                     <div style="font-weight: 700; font-size: 0.85rem;">1 RK / Room</div>
@@ -217,28 +218,28 @@
               <!-- Pickup & Drop Locations -->
               <div class="form-row form-row-2">
                 <div class="form-group">
-                  <label class="form-label" for="quote-pickup">Pickup Location <span style="color: var(--primary);">*</span></label>
+                  <label class="form-label" for="quote-pickup">Pickup Location <span class="required-star">*</span></label>
                   <input type="text" class="form-control" id="quote-pickup" placeholder="e.g. Nalasopara East, Mumbai, Vasai" required value="Nalasopara East, Palghar">
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="quote-drop">Drop Location <span style="color: var(--primary);">*</span></label>
+                  <label class="form-label" for="quote-drop">Drop Location <span class="required-star">*</span></label>
                   <input type="text" class="form-control" id="quote-drop" placeholder="e.g. Kharadi Pune, Bangalore, Thane" required>
                 </div>
               </div>
             </div>
 
             <!-- Step 3: Date & Time Slot -->
-            <div style="margin-bottom: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--slate-200);">
-              <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Step 3: Schedule & Preferences</span>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--slate-900); margin-bottom: 1rem;">Moving Date & Preferred Time</h3>
+            <div class="form-section-block">
+              <span class="badge badge-emerald">Step 3: Schedule &amp; Preferences</span>
+              <h3 class="form-section-title">Moving Date &amp; Preferred Time</h3>
 
               <div class="form-row form-row-2">
                 <div class="form-group">
-                  <label class="form-label" for="quote-moving-date">Moving Date <span style="color: var(--primary);">*</span></label>
+                  <label class="form-label" for="quote-moving-date">Moving Date <span class="required-star">*</span></label>
                   <input type="date" class="form-control" id="quote-moving-date" required>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="quote-moving-time">Moving Time <span style="color: var(--primary);">*</span></label>
+                  <label class="form-label" for="quote-moving-time">Moving Time <span class="required-star">*</span></label>
                   <select class="form-control" id="quote-moving-time" required>
                     <option value="Morning (7:30 AM - 10:30 AM)" selected>Morning (7:30 AM - 10:30 AM) [Recommended]</option>
                     <option value="Mid-Day (11:00 AM - 2:00 PM)">Mid-Day (11:00 AM - 2:00 PM)</option>
@@ -258,14 +259,14 @@
             </div>
 
             <!-- Action Buttons: Send on WhatsApp OR Submit Quote -->
-            <div class="quote-action-btns-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-              <button type="button" class="btn btn-whatsapp btn-lg" id="btn-quote-whatsapp" style="justify-content: center;">
-                <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+            <div class="quote-action-btns-grid">
+              <button type="button" class="btn btn-whatsapp btn-lg btn-full" id="btn-quote-whatsapp">
+                <i data-lucide="message-circle"></i>
                 <span>Send on WhatsApp</span>
               </button>
 
-              <button type="submit" class="btn btn-primary btn-lg" id="btn-submit-quote" style="justify-content: center;">
-                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+              <button type="submit" class="btn btn-primary btn-lg btn-full" id="btn-submit-quote">
+                <i data-lucide="check-circle"></i>
                 <span>Submit Quote →</span>
               </button>
             </div>
@@ -282,15 +283,15 @@
   <!-- Sticky Mobile Bottom Bar -->
   <div class="mobile-bottom-bar">
     <a href="tel:+918218059678" class="mobile-bottom-btn mobile-btn-call">
-      <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
+      <i data-lucide="phone"></i>
       <span>Call Desk</span>
     </a>
     <a href="https://wa.me/918218059678?text=Hello%20Shantanu%20Packers,%20I%20need%20a%20moving%20quote." target="_blank" rel="noopener noreferrer" class="mobile-bottom-btn mobile-btn-wa">
-      <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+      <i data-lucide="message-circle"></i>
       <span>WhatsApp</span>
     </a>
     <a href="quote.html" class="mobile-bottom-btn mobile-btn-quote active">
-      <i data-lucide="calendar-check" style="width: 16px; height: 16px;"></i>
+      <i data-lucide="calendar-check"></i>
       <span>Book Move</span>
     </a>
   </div>
