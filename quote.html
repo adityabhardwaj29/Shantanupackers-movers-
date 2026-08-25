@@ -3,431 +3,395 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get Free Quote | Shantanu Packers and Movers — Instant Moving Estimate</title>
-  <meta name="description" content="Get your free moving quote from Shantanu Packers and Movers. Household shifting, office relocation, vehicle transport across Maharashtra and India. Free quote within 60 minutes.">
+  <title>Get Free Quote | Shantanu Packers &amp; Movers — 100% Binding Moving Estimate</title>
+  <meta name="description" content="Calculate your moving estimate with Shantanu Packers and Movers. Free, instant, and binding quotation for household shifting, office relocation, and vehicle transport.">
   <link rel="canonical" href="https://shantanupackers-movers-nine.vercel.app/quote.html">
-  <meta name="theme-color" content="#F97316">
+  <meta name="theme-color" content="#EA580C">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/ui-enhancements.css">
+
+  <style>
+    .quote-page-card {
+      background-color: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-3xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-xl);
+    }
+    @media (max-width: 640px) {
+      .quote-page-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-2xl); }
+    }
+    .visual-size-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .visual-size-card {
+      border: 2px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1rem 0.75rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      background-color: var(--slate-50);
+    }
+    .visual-size-card:hover {
+      border-color: var(--primary-border);
+      background-color: var(--primary-light);
+    }
+    .visual-size-card.active {
+      border-color: var(--primary);
+      background-color: var(--primary-light);
+    }
+    .visual-size-card .size-icon { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    .visual-size-card .size-name {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+    .visual-size-card.active .size-name { color: var(--primary); }
+    .field-label {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+    .req-star { color: var(--primary); }
+    .quote-fieldset {
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .quote-legend {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--primary);
+      padding: 0 0.5rem;
+    }
+  </style>
+
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="js/supabase.js" defer></script>
   <script src="js/quote.js" defer></script>
   <script src="js/main.js" defer></script>
-
-  <style>
-    .visual-size-card {
-      border: 2px solid var(--slate-200);
-      border-radius: var(--r-md);
-      padding: 1.125rem 1rem;
-      cursor: pointer;
-      text-align: center;
-      transition: var(--t);
-      background: transparent;
-    }
-    .visual-size-card:hover {
-      border-color: var(--primary-border);
-      background: var(--primary-light);
-    }
-    .visual-size-card.active {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-    .visual-size-card .size-icon {
-      font-size: 1.75rem;
-      margin-bottom: 0.375rem;
-    }
-    .visual-size-card .size-label {
-      font-family: var(--font-heading);
-      font-size: 0.8125rem;
-      font-weight: 700;
-      color: var(--dark-900);
-    }
-    .visual-size-card .size-sub {
-      font-size: 0.7rem;
-      color: var(--slate-500);
-      margin-top: 0.15rem;
-    }
-    .visual-size-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      margin-top: 0.5rem;
-    }
-    @media (max-width: 480px) {
-      .visual-size-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    .field-error {
-      font-family: var(--font-heading);
-      font-size: 0.78rem;
-      color: #EF4444;
-      margin-top: 0.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-    .quote-trust-col {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .qt-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--r-md);
-      padding: 1.25rem;
-    }
-    .qt-card-title {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .qt-card-title [data-lucide] { width: 16px; height: 16px; color: #FDBA74; }
-    .qt-card p { font-size: 0.875rem; color: var(--slate-400); line-height: 1.6; }
-    .qt-step-list { display: flex; flex-direction: column; gap: 0.625rem; }
-    .qt-step {
-      display: flex;
-      align-items: center;
-      gap: 0.625rem;
-      font-size: 0.875rem;
-      color: var(--slate-300);
-    }
-    .qt-step-num {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: white;
-      font-family: var(--font-heading);
-      font-size: 0.7rem;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .quote-page-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    @media (max-width: 1024px) {
-      .quote-page-wrap { grid-template-columns: 1fr; gap: 2rem; }
-    }
-  </style>
 </head>
 <body>
 
+  <!-- TOP BAR -->
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-left">
-        <div class="top-bar-item accent"><i data-lucide="shield-check"></i><span>MSME: UDYAM-MH-17-0244739</span></div>
-        <div class="top-bar-item"><i data-lucide="clock"></i><span>Available 24/7</span></div>
+        <span style="display:inline-flex;align-items:center;gap:0.4rem;">
+          <span class="live-dot"></span> 24/7 Nalasopara, Palghar &amp; Mumbai Relocation Helpline
+        </span>
+        <span style="opacity:0.4;">•</span>
+        <span>Govt. MSME Reg: <strong>UDYAM-MH-17-0244739</strong></span>
       </div>
       <div class="top-bar-right">
-        <a href="tel:+918218059678" class="top-bar-phone"><i data-lucide="phone-call"></i><span>+91 8218059678</span></a>
-        <a href="tel:+919371482180" class="top-bar-phone"><i data-lucide="phone"></i><span>+91 9371482180</span></a>
+        <a href="tel:+918218059678"><i data-lucide="phone-call" style="width:14px;height:14px;"></i> +91 8218059678</a>
+        <span style="opacity:0.4;">|</span>
+        <a href="mailto:shantanupackers@gmail.com"><i data-lucide="mail" style="width:14px;height:14px;"></i> shantanupackers@gmail.com</a>
       </div>
     </div>
   </div>
 
+  <!-- STICKY HEADER -->
   <header class="site-header" id="site-header">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="Shantanu Packers and Movers Logo" class="brand-logo-img"><div class="logo-text"><span class="logo-name">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Shantanu Packers and Movers Logo" class="brand-logo-img" width="48" height="48">
+        <div class="logo-title-group">
+          <div class="logo-main-title">SHANTANU <span>PACKERS &amp; MOVERS</span></div>
+          <div class="logo-sub-tag">Govt. Registered Relocation Enterprise</div>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item-link">Home</a>
+        <a href="about.html" class="nav-item-link">About</a>
+        <a href="services.html" class="nav-item-link">Services</a>
+        <a href="gallery.html" class="nav-item-link">Gallery</a>
+        <a href="pricing.html" class="nav-item-link">Pricing</a>
+        <a href="contact.html" class="nav-item-link">Contact</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-item-link">Legal <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></a>
+          <div class="dropdown-menu">
+            <a href="terms-and-conditions.html" class="dropdown-item">Terms &amp; Conditions</a>
+            <a href="privacy-policy.html" class="dropdown-item">Privacy Policy</a>
+          </div>
+        </div>
       </nav>
-      <div class="nav-actions">
-        <a href="quote.html" class="btn btn-primary btn-sm"><i data-lucide="file-text"></i> Get Free Quote</a>
-        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
+      <div class="header-actions">
+        <a href="tel:+918218059678" class="btn-header-call"><i data-lucide="phone" style="width:15px;height:15px;color:var(--primary);"></i><span>+91 8218059678</span></a>
+        <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="btn-header-wa"><i data-lucide="message-circle" style="width:16px;height:16px;"></i><span>WhatsApp</span></a>
+        <a href="quote.html" class="btn-header-quote"><i data-lucide="file-text" style="width:15px;height:15px;"></i><span>Get Free Quote</span></a>
+        <button class="btn-mobile-toggle" id="btn-hamburger" aria-label="Open mobile menu"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
       </div>
     </div>
   </header>
 
-  <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true">
-    <div class="drawer-backdrop" id="drawer-backdrop"></div>
-    <div class="drawer-panel">
-      <div class="drawer-header">
-        <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="" class="brand-logo-img" style="height:36px"><div class="logo-text"><span class="logo-name" style="font-size:1rem">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
-        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close"><i data-lucide="x"></i></button>
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <img src="assets/images/logo.png" alt="" style="height:38px;">
+          <div class="logo-title-group"><div class="logo-main-title" style="font-size:1rem;">SHANTANU</div><div class="logo-sub-tag">Packers &amp; Movers</div></div>
+        </div>
+        <button class="btn-mobile-toggle" id="btn-close-drawer" aria-label="Close menu"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
       </div>
-      <nav class="drawer-body">
-        <a href="index.html" class="drawer-nav-link">Home<i data-lucide="chevron-right"></i></a>
-        <a href="about.html" class="drawer-nav-link">About Us<i data-lucide="chevron-right"></i></a>
-        <a href="services.html" class="drawer-nav-link">Services<i data-lucide="chevron-right"></i></a>
-        <a href="gallery.html" class="drawer-nav-link">Gallery<i data-lucide="chevron-right"></i></a>
-        <a href="pricing.html" class="drawer-nav-link">Pricing<i data-lucide="chevron-right"></i></a>
-        <a href="contact.html" class="drawer-nav-link">Contact<i data-lucide="chevron-right"></i></a>
-      </nav>
-      <div class="drawer-footer">
-        <a href="tel:+918218059678" class="btn btn-primary btn-full"><i data-lucide="phone-call"></i> Call Now</a>
-        <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="btn btn-whatsapp btn-full"><i data-lucide="message-circle"></i> WhatsApp Us</a>
+      <div class="mobile-drawer-body">
+        <a href="index.html" class="m-nav-link">Home <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="about.html" class="m-nav-link">About Us <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="services.html" class="m-nav-link">Services <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="gallery.html" class="m-nav-link">Gallery <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="pricing.html" class="m-nav-link">Pricing <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="contact.html" class="m-nav-link">Contact <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
       </div>
     </div>
   </div>
 
   <main>
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-      <div class="container page-hero-inner">
-        <div class="breadcrumb"><a href="index.html">Home</a><i data-lucide="chevron-right"></i>Free Quote</div>
-        <h1 class="page-hero-title">Get Your Free Moving Quote</h1>
-        <p class="page-hero-sub">Fill in your details and we'll respond with a transparent, no-obligation estimate within 60 minutes.</p>
+    <section style="background-color:var(--navy-900);color:#FFFFFF;padding:4rem 0 3.5rem;text-align:center;">
+      <div class="container">
+        <span class="eyebrow-badge">OFFICIAL MOVING ESTIMATE</span>
+        <h1 class="section-main-heading" style="color:#FFFFFF;margin-top:0.5rem;">Get Your Instant Relocation Quote</h1>
+        <p class="section-subtext" style="color:var(--slate-300);max-width:650px;margin:0 auto;">
+          Fill out the details below. Our dispatch coordinator will provide an itemized binding quote within 15 minutes.
+        </p>
       </div>
     </section>
 
-    <!-- QUOTE FORM + TRUST SECTION -->
-    <section class="section section-dark">
-      <div class="container">
-        <div class="quote-page-wrap">
+    <!-- Quote Form Engine -->
+    <section class="section section-slate">
+      <div class="container" style="max-width:880px;">
 
-          <!-- Trust Column -->
-          <div class="quote-trust-col">
-            <div class="qt-card">
-              <div class="qt-card-title"><i data-lucide="zap"></i> What Happens Next?</div>
-              <div class="qt-step-list">
-                <div class="qt-step"><span class="qt-step-num">1</span>Submit your quote form</div>
-                <div class="qt-step"><span class="qt-step-num">2</span>Our team calls you within 60 minutes</div>
-                <div class="qt-step"><span class="qt-step-num">3</span>Get a detailed cost breakdown</div>
-                <div class="qt-step"><span class="qt-step-num">4</span>Confirm your booking</div>
-                <div class="qt-step"><span class="qt-step-num">5</span>Relax — we handle everything!</div>
+        <div class="quote-page-card">
+
+          <!-- Success State -->
+          <div id="quote-success-state" style="display:none;text-align:center;padding:2rem 1rem;">
+            <div style="width:68px;height:68px;border-radius:50%;background:#ECFDF5;border:2px solid #10B981;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;color:#10B981;">
+              <i data-lucide="check-circle-2" style="width:36px;height:36px;"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:900;color:var(--slate-900);margin-bottom:0.5rem;">🎉 Quote Request Received!</h2>
+            <p style="color:var(--slate-600);font-size:0.95rem;line-height:1.7;margin-bottom:1.5rem;">
+              Thank you! Our relocation dispatch supervisor is preparing your customized quotation and will call you within <strong>15 minutes</strong>.
+            </p>
+            <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+              <a href="https://wa.me/918218059678?text=Hi!%20I%20just%20submitted%20a%20quote%20request." target="_blank" rel="noopener" class="btn-hero-wa" style="text-decoration:none;">
+                <i data-lucide="message-circle" style="width:18px;height:18px;"></i> Follow up on WhatsApp
+              </a>
+              <button id="btn-new-quote" class="btn-hero-outline" style="background:var(--slate-800);color:#FFFFFF;">
+                Submit Another Quote
+              </button>
+            </div>
+          </div>
+
+          <!-- Error Alert -->
+          <div id="quote-error-state" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1rem;margin-bottom:1.5rem;">
+            <p id="quote-error-msg" style="color:#DC2626;font-size:0.9rem;font-weight:600;"></p>
+          </div>
+
+          <!-- Quote Form -->
+          <form id="shantanu-quote-form" novalidate>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+              <div>
+                <h2 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:var(--slate-900);">📦 Relocation Details Form</h2>
+                <p style="font-size:0.85rem;color:var(--slate-500);">Fields with <span class="req-star">*</span> are mandatory for accurate estimation.</p>
               </div>
-            </div>
-            <div class="qt-card">
-              <div class="qt-card-title"><i data-lucide="shield-check"></i> Our Promises</div>
-              <div class="qt-step-list">
-                <div class="qt-step"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--success);flex-shrink:0;"></i> No hidden charges</div>
-                <div class="qt-step"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--success);flex-shrink:0;"></i> 100% safe, damage-free packing</div>
-                <div class="qt-step"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--success);flex-shrink:0;"></i> On-time pickup and delivery</div>
-                <div class="qt-step"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--success);flex-shrink:0;"></i> GPS-tracked fleet</div>
-                <div class="qt-step"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--success);flex-shrink:0;"></i> Trained, uniformed staff</div>
-              </div>
-            </div>
-            <div class="qt-card">
-              <div class="qt-card-title"><i data-lucide="award"></i> Govt. Registered</div>
-              <p>We are officially registered under MSME, Govt. of India.<br><strong style="color:#FDBA74;">UDYAM-MH-17-0244739</strong></p>
-            </div>
-            <div class="qt-card">
-              <div class="qt-card-title"><i data-lucide="message-circle"></i> Prefer WhatsApp?</div>
-              <p style="margin-bottom:0.875rem;">Get an instant quote directly via WhatsApp — fastest way to connect!</p>
-              <a href="https://wa.me/918218059678?text=Hi!%20I%20need%20a%20relocation%20quote." target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm btn-full" id="btn-quote-whatsapp">
-                <i data-lucide="message-circle"></i> WhatsApp Now
+              <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="btn-header-wa" id="btn-quote-whatsapp" style="text-decoration:none;">
+                <i data-lucide="message-circle" style="width:15px;height:15px;"></i> Direct WhatsApp Quote
               </a>
             </div>
-          </div>
 
-          <!-- Quote Form Card -->
-          <div class="quote-card" id="quote-form-card" style="position:sticky;top:90px;">
-
-            <!-- Success State -->
-            <div id="quote-success-state" style="display:none;text-align:center;padding:2rem 1rem;">
-              <div style="width:72px;height:72px;border-radius:50%;background:var(--success-light);border:2px solid var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;color:var(--success);">
-                <i data-lucide="check-circle-2" style="width:36px;height:36px;"></i>
+            <!-- Step 1: Contact -->
+            <fieldset class="quote-fieldset">
+              <legend class="quote-legend">1. Contact Information</legend>
+              <div class="hq-form-grid" style="margin-top:0.5rem;">
+                <div>
+                  <label class="field-label" for="quote-full-name">Full Name <span class="req-star">*</span></label>
+                  <input type="text" id="quote-full-name" name="full_name" class="hq-input-control" placeholder="Enter your full name" required>
+                </div>
+                <div>
+                  <label class="field-label" for="quote-phone">Mobile Number (WhatsApp) <span class="req-star">*</span></label>
+                  <input type="tel" id="quote-phone" name="phone" class="hq-input-control" placeholder="+91 XXXXXXXXXX" required>
+                </div>
               </div>
-              <h2 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;color:var(--dark-900);margin-bottom:0.5rem;">🎉 Quote Submitted!</h2>
-              <p style="color:var(--slate-600);font-size:0.9375rem;line-height:1.7;margin-bottom:0.5rem;">Thank you! Our team will call you within <strong>60 minutes</strong> with your personalized quote.</p>
-              <p style="color:var(--slate-500);font-size:0.875rem;margin-bottom:1.75rem;">A confirmation has been sent to your email.</p>
-              <div style="display:flex;gap:0.75rem;flex-direction:column;">
-                <a href="https://wa.me/918218059678?text=Hi!%20I%20just%20submitted%20a%20quote%20form." target="_blank" rel="noopener" class="btn btn-whatsapp btn-full">
-                  <i data-lucide="message-circle"></i> Follow up on WhatsApp
-                </a>
-                <button id="btn-new-quote" class="btn btn-outline btn-full">
-                  <i data-lucide="file-plus"></i> Submit Another Quote
-                </button>
+              <div style="margin-top:0.85rem;">
+                <label class="field-label" for="quote-email">Email Address <span class="req-star">*</span></label>
+                <input type="email" id="quote-email" name="email" class="hq-input-control" placeholder="name@example.com" required>
               </div>
-            </div>
+            </fieldset>
 
-            <!-- Error State -->
-            <div id="quote-error-state" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:var(--r-md);padding:1rem;margin-bottom:1.25rem;">
-              <p id="quote-error-msg" style="color:#DC2626;font-size:0.9rem;font-family:var(--font-heading);font-weight:600;"></p>
-            </div>
-
-            <!-- Form -->
-            <form id="shantanu-quote-form" novalidate>
-              <h2 class="qc-title" style="margin-bottom:0.25rem;">📦 Request Free Quote</h2>
-              <p class="qc-sub">All fields marked <span style="color:var(--primary)">*</span> are required. We'll respond within 60 minutes.</p>
-
-              <!-- Step 1: Contact -->
-              <fieldset style="border:1.5px solid var(--slate-200);border-radius:var(--r-md);padding:1.25rem;margin-bottom:1.25rem;">
-                <legend style="font-family:var(--font-heading);font-size:0.85rem;font-weight:700;color:var(--primary);padding:0 0.5rem;">1. Your Contact Details</legend>
-                <div class="form-grid-2">
-                  <div class="form-group">
-                    <label class="form-label" for="quote-full-name">Full Name <span class="req">*</span></label>
-                    <input type="text" id="quote-full-name" name="full_name" class="form-control" placeholder="Your full name" required autocomplete="name">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="quote-phone">Mobile Number <span class="req">*</span></label>
-                    <input type="tel" id="quote-phone" name="phone" class="form-control" placeholder="+91 XXXXXXXXXX" required autocomplete="tel">
-                  </div>
+            <!-- Step 2: Route & Date -->
+            <fieldset class="quote-fieldset">
+              <legend class="quote-legend">2. Route &amp; Schedule</legend>
+              <div class="hq-form-grid" style="margin-top:0.5rem;">
+                <div>
+                  <label class="field-label" for="quote-pickup">Pickup Location / City <span class="req-star">*</span></label>
+                  <input type="text" id="quote-pickup" name="pickup_location" class="hq-input-control" placeholder="e.g. Nalasopara East, Mumbai" required>
                 </div>
-                <div class="form-group" style="margin-top:1rem;">
-                  <label class="form-label" for="quote-email">Email Address <span class="req">*</span></label>
-                  <input type="email" id="quote-email" name="email" class="form-control" placeholder="your@email.com" required autocomplete="email">
+                <div>
+                  <label class="field-label" for="quote-drop">Drop Destination / City <span class="req-star">*</span></label>
+                  <input type="text" id="quote-drop" name="drop_location" class="hq-input-control" placeholder="e.g. Pune / Bengaluru" required>
                 </div>
-              </fieldset>
-
-              <!-- Step 2: Move Details -->
-              <fieldset style="border:1.5px solid var(--slate-200);border-radius:var(--r-md);padding:1.25rem;margin-bottom:1.25rem;">
-                <legend style="font-family:var(--font-heading);font-size:0.85rem;font-weight:700;color:var(--primary);padding:0 0.5rem;">2. Move Details</legend>
-                <div class="form-grid-2">
-                  <div class="form-group">
-                    <label class="form-label" for="quote-pickup">From City / Area <span class="req">*</span></label>
-                    <input type="text" id="quote-pickup" name="pickup_location" class="form-control" placeholder="e.g. Nalasopara East" required autocomplete="off">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="quote-drop">To City / Area <span class="req">*</span></label>
-                    <input type="text" id="quote-drop" name="drop_location" class="form-control" placeholder="e.g. Pune" required autocomplete="off">
-                  </div>
+              </div>
+              <div class="hq-form-grid" style="margin-top:0.85rem;">
+                <div>
+                  <label class="field-label" for="quote-moving-date">Moving Date <span class="req-star">*</span></label>
+                  <input type="date" id="quote-moving-date" name="moving_date" class="hq-input-control" required>
                 </div>
-                <div class="form-grid-2" style="margin-top:1rem;">
-                  <div class="form-group">
-                    <label class="form-label" for="quote-moving-date">Preferred Moving Date <span class="req">*</span></label>
-                    <input type="date" id="quote-moving-date" name="moving_date" class="form-control" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="quote-moving-time">Preferred Time Slot</label>
-                    <select id="quote-moving-time" name="moving_time" class="form-control">
-                      <option>Morning (7:30 AM - 10:30 AM)</option>
-                      <option>Afternoon (11:00 AM - 2:00 PM)</option>
-                      <option>Evening (3:00 PM - 7:00 PM)</option>
-                      <option>Flexible / Any Time</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group" style="margin-top:1rem;">
-                  <label class="form-label" for="quote-service-type">Service Type</label>
-                  <select id="quote-service-type" name="service_type" class="form-control">
-                    <option>Household Shifting</option>
-                    <option>Office Relocation</option>
-                    <option>Local Shifting</option>
-                    <option>Domestic / Intercity Relocation</option>
-                    <option>Car Transportation</option>
-                    <option>Bike Transportation</option>
-                    <option>Packing &amp; Unpacking</option>
-                    <option>Warehouse / Storage</option>
-                    <option>Loading &amp; Unloading Only</option>
+                <div>
+                  <label class="field-label" for="quote-moving-time">Preferred Time Slot</label>
+                  <select id="quote-moving-time" name="moving_time" class="hq-input-control">
+                    <option>Morning (7:30 AM - 10:30 AM)</option>
+                    <option>Afternoon (11:00 AM - 2:00 PM)</option>
+                    <option>Evening (3:00 PM - 7:00 PM)</option>
+                    <option>Flexible / Any Time</option>
                   </select>
                 </div>
-              </fieldset>
+              </div>
+            </fieldset>
 
-              <!-- Step 3: Property -->
-              <fieldset style="border:1.5px solid var(--slate-200);border-radius:var(--r-md);padding:1.25rem;margin-bottom:1.25rem;">
-                <legend style="font-family:var(--font-heading);font-size:0.85rem;font-weight:700;color:var(--primary);padding:0 0.5rem;">3. Property &amp; Move Size</legend>
-                <div class="form-label" style="margin-bottom:0.5rem;">Property / Move Size</div>
-                <div class="visual-size-grid">
-                  <div class="visual-size-card active" data-size="1 BHK Family Move">
-                    <div class="size-icon">🏠</div>
-                    <div class="size-label">1 BHK</div>
-                    <div class="size-sub">Small Home</div>
-                  </div>
-                  <div class="visual-size-card" data-size="2 BHK Family Move">
-                    <div class="size-icon">🏡</div>
-                    <div class="size-label">2 BHK</div>
-                    <div class="size-sub">Medium Home</div>
-                  </div>
-                  <div class="visual-size-card" data-size="3 BHK Family Move">
-                    <div class="size-icon">🏘️</div>
-                    <div class="size-label">3 BHK+</div>
-                    <div class="size-sub">Large Home</div>
-                  </div>
-                  <div class="visual-size-card" data-size="Office Relocation">
-                    <div class="size-icon">🏢</div>
-                    <div class="size-label">Office</div>
-                    <div class="size-sub">Commercial</div>
-                  </div>
-                  <div class="visual-size-card" data-size="Vehicle / Car">
-                    <div class="size-icon">🚗</div>
-                    <div class="size-label">Vehicle</div>
-                    <div class="size-sub">Car / Bike</div>
-                  </div>
-                  <div class="visual-size-card" data-size="Small / Partial Move">
-                    <div class="size-icon">📦</div>
-                    <div class="size-label">Partial</div>
-                    <div class="size-sub">Few Items</div>
-                  </div>
+            <!-- Step 3: Move Size & Property -->
+            <fieldset class="quote-fieldset">
+              <legend class="quote-legend">3. Move Scale &amp; Property Details</legend>
+              <label class="field-label">Select Move Scale</label>
+              <div class="visual-size-grid">
+                <div class="visual-size-card active" data-size="1 BHK Family Move">
+                  <div class="size-icon">🏠</div>
+                  <div class="size-name">1 BHK</div>
                 </div>
-                <input type="hidden" id="quote-vehicle-type" name="vehicle_type" value="1 BHK Family Move">
-
-                <div class="form-grid-2" style="margin-top:1rem;">
-                  <div class="form-group">
-                    <label class="form-label" for="quote-floor">Floor Number</label>
-                    <select id="quote-floor" name="floor_number" class="form-control">
-                      <option>Ground Floor</option>
-                      <option>1st Floor</option>
-                      <option>2nd Floor</option>
-                      <option>3rd Floor</option>
-                      <option>4th Floor</option>
-                      <option>5th Floor or above</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="quote-lift">Lift Available?</label>
-                    <select id="quote-lift" name="lift_available" class="form-control">
-                      <option value="true">Yes — Lift Available</option>
-                      <option value="false">No — No Lift</option>
-                    </select>
-                  </div>
+                <div class="visual-size-card" data-size="2 BHK Family Move">
+                  <div class="size-icon">🏡</div>
+                  <div class="size-name">2 BHK</div>
                 </div>
-              </fieldset>
+                <div class="visual-size-card" data-size="3 BHK Family Move">
+                  <div class="size-icon">🏘️</div>
+                  <div class="size-name">3 BHK+</div>
+                </div>
+                <div class="visual-size-card" data-size="Office Relocation">
+                  <div class="size-icon">🏢</div>
+                  <div class="size-name">Office</div>
+                </div>
+                <div class="visual-size-card" data-size="Vehicle / Car">
+                  <div class="size-icon">🚗</div>
+                  <div class="size-name">Vehicle</div>
+                </div>
+                <div class="visual-size-card" data-size="Small / Partial Move">
+                  <div class="size-icon">📦</div>
+                  <div class="size-name">Few Items</div>
+                </div>
+              </div>
+              <input type="hidden" id="quote-vehicle-type" name="vehicle_type" value="1 BHK Family Move">
 
-              <!-- Special Notes -->
-              <div class="form-group" style="margin-bottom:1.5rem;">
-                <label class="form-label" for="quote-notes">Special Requirements / Notes</label>
-                <textarea id="quote-notes" name="notes" class="form-control" rows="3" placeholder="e.g. Fragile items, piano, large appliances, specific instructions..."></textarea>
+              <div class="hq-form-grid" style="margin-top:1.25rem;">
+                <div>
+                  <label class="field-label" for="quote-floor">Floor Number</label>
+                  <select id="quote-floor" name="floor_number" class="hq-input-control">
+                    <option>Ground Floor</option>
+                    <option>1st Floor</option>
+                    <option>2nd Floor</option>
+                    <option>3rd Floor</option>
+                    <option>4th Floor or above</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label" for="quote-lift">Lift Available?</label>
+                  <select id="quote-lift" name="lift_available" class="hq-input-control">
+                    <option value="true">Yes — Lift Available</option>
+                    <option value="false">No — No Lift</option>
+                  </select>
+                </div>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-full btn-lg" id="quote-submit-btn">
-                <i data-lucide="send"></i> Submit Free Quote Request
-              </button>
+              <div style="margin-top:0.85rem;">
+                <label class="field-label" for="quote-service-type">Service Type</label>
+                <select id="quote-service-type" name="service_type" class="hq-input-control">
+                  <option>Household Shifting</option>
+                  <option>Office Relocation</option>
+                  <option>Local Shifting</option>
+                  <option>Car Transportation</option>
+                  <option>Bike Transportation</option>
+                  <option>Warehouse / Storage</option>
+                  <option>Packing &amp; Unpacking Only</option>
+                </select>
+              </div>
+            </fieldset>
 
-              <p style="text-align:center;font-size:0.75rem;color:var(--slate-400);margin-top:0.875rem;">
-                🔒 Your information is 100% private and will never be shared or sold.
-              </p>
-            </form>
+            <div style="margin-bottom:1.5rem;">
+              <label class="field-label" for="quote-notes">Additional Inventory / Special Requirements</label>
+              <textarea id="quote-notes" name="notes" class="hq-input-control" rows="3" placeholder="e.g. Glass dining table, double-door fridge, fragile antique items, piano..."></textarea>
+            </div>
 
-          </div>
+            <button type="submit" class="btn-submit-quote-hero" id="quote-submit-btn" style="padding:1.1rem;font-size:1.05rem;">
+              <i data-lucide="send"></i> SUBMIT FREE QUOTE REQUEST
+            </button>
+
+            <p style="text-align:center;font-size:0.78rem;color:var(--slate-500);margin-top:1rem;">
+              🔒 100% Privacy Protected. Your details will never be shared. Govt. MSME Reg: UDYAM-MH-17-0244739.
+            </p>
+          </form>
+
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <div class="cta-strip">
-      <div class="container">
-        <h2 class="cta-strip-title reveal">Prefer to Talk? Call Us Now!</h2>
-        <p class="cta-strip-sub reveal">Our friendly team is available 24/7 to give you an instant quote over the phone.</p>
-        <div class="cta-strip-btns reveal">
-          <a href="tel:+918218059678" class="btn btn-secondary btn-lg"><i data-lucide="phone-call"></i> +91 8218059678</a>
-          <a href="tel:+919371482180" class="btn btn-ghost btn-lg"><i data-lucide="phone"></i> +91 9371482180</a>
-        </div>
-      </div>
-    </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div><img src="assets/images/logo.png" alt="" class="footer-logo-img"><div style="display:flex;flex-direction:column;line-height:1;margin-top:0.75rem;"><span class="footer-logo-name">SHANTANU</span><span class="footer-logo-tag">Packers &amp; Movers</span></div><p class="footer-desc">MSME-registered professional relocation experts since 2019.</p><div class="footer-msme"><i data-lucide="shield-check"></i> UDYAM-MH-17-0244739</div></div>
-        <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About Us</a><a href="services.html" class="footer-link">Services</a><a href="gallery.html" class="footer-link">Gallery</a><a href="pricing.html" class="footer-link">Pricing</a><a href="contact.html" class="footer-link">Contact</a></div></div>
-        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html" class="footer-link">Household Shifting</a><a href="services.html" class="footer-link">Office Relocation</a><a href="services.html" class="footer-link">Car Transportation</a><a href="services.html" class="footer-link">Bike Transportation</a><a href="services.html" class="footer-link">Warehouse / Storage</a></div></div>
-        <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><i data-lucide="map-pin"></i><span>Nalasopara East, MH - 401209</span></div><div class="footer-contact-item"><i data-lucide="phone-call"></i><span><a href="tel:+918218059678">+91 8218059678</a></span></div><div class="footer-contact-item"><i data-lucide="mail"></i><span><a href="mailto:shantanupackers@gmail.com">shantanupackers@gmail.com</a></span></div></div>
+        <div>
+          <img src="assets/images/logo.png" alt="" class="footer-brand-logo">
+          <div style="font-family:var(--font-heading);font-size:1.15rem;font-weight:900;color:#FFFFFF;margin-top:0.75rem;">SHANTANU <span>PACKERS &amp; MOVERS</span></div>
+          <p style="font-size:0.85rem;color:var(--slate-400);line-height:1.6;margin:0.75rem 0 1rem;">Govt. MSME Registered relocation enterprise providing safe, professional household shifting, office moving &amp; vehicle transport across India.</p>
+          <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.75rem;border-radius:var(--radius-full);background:rgba(234,88,12,0.15);border:1px solid rgba(234,88,12,0.3);color:#FB923C;font-size:0.75rem;font-weight:700;"><i data-lucide="shield-check" style="width:13px;height:13px;"></i> UDYAM-MH-17-0244739</div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Quick Links</div>
+          <div class="footer-links-list">
+            <a href="index.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Home</a>
+            <a href="about.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> About Us</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Services</a>
+            <a href="gallery.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Gallery</a>
+            <a href="pricing.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Pricing</a>
+            <a href="contact.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Our Services</div>
+          <div class="footer-links-list">
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Household Shifting</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Office Relocation</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Car Transportation</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Bike Shifting</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Registered Office</div>
+          <div class="footer-contact-row"><i data-lucide="map-pin"></i><span>S/N 01, Bilal Pada, PALGHAR Road, Nalasopara East, Maharashtra - 401209</span></div>
+          <div class="footer-contact-row"><i data-lucide="phone-call"></i><a href="tel:+918218059678">+91 8218059678</a></div>
+          <div class="footer-contact-row"><i data-lucide="mail"></i><a href="mailto:shantanupackers@gmail.com">shantanupackers@gmail.com</a></div>
+        </div>
       </div>
-      <div class="footer-bottom"><div class="footer-copy">&copy; 2024 Shantanu Packers and Movers. All rights reserved.</div><div class="footer-bottom-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-and-conditions.html">Terms &amp; Conditions</a></div></div>
+      <div class="footer-bottom-row">
+        <div>&copy; 2024 Shantanu Packers and Movers. All Rights Reserved.</div>
+        <div style="display:flex;gap:1.5rem;"><a href="terms-and-conditions.html" style="color:var(--slate-400);">Terms &amp; Conditions</a><a href="privacy-policy.html" style="color:var(--slate-400);">Privacy Policy</a></div>
+      </div>
     </div>
   </footer>
 
-  <div class="mobile-bottom-bar"><div class="mobile-bar-grid"><a href="tel:+918218059678" class="mbb-btn mbb-call"><i data-lucide="phone-call"></i>Call Now</a><a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="mbb-btn mbb-wa"><i data-lucide="message-circle"></i>WhatsApp</a><button class="mbb-btn mbb-quote" onclick="document.getElementById('shantanu-quote-form')?.scrollIntoView({behavior:'smooth'})"><i data-lucide="arrow-up"></i>Top of Form</button></div></div>
-  <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+  <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="floating-wa-btn"><i data-lucide="message-circle"></i></a>
 </body>
 </html>

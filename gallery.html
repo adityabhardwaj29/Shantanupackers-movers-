@@ -3,179 +3,266 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery | Shantanu Packers and Movers — Our Work in Pictures</title>
-  <meta name="description" content="See our work — professional packing, loading, vehicle transport, and warehouse storage. Real photos from Shantanu Packers and Movers' expert team.">
+  <title>Gallery | Shantanu Packers &amp; Movers — Live Operations &amp; Packaging Photos</title>
+  <meta name="description" content="View real operational photos of Shantanu Packers and Movers: furniture packing, truck loading, car transport, bike shifting, and warehouse storage.">
   <link rel="canonical" href="https://shantanupackers-movers-nine.vercel.app/gallery.html">
-  <meta name="theme-color" content="#F97316">
+  <meta name="theme-color" content="#EA580C">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/ui-enhancements.css">
+
+  <style>
+    .gallery-grid-mrl {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-grid-item {
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid var(--slate-200);
+      background-color: var(--navy-900);
+      transition: all 0.3s ease;
+    }
+    .gallery-grid-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary-border);
+    }
+    .gallery-grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-grid-item:hover img {
+      transform: scale(1.06);
+    }
+    .gallery-item-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      background: linear-gradient(to top, rgba(6, 11, 23, 0.9) 0%, transparent 100%);
+      padding: 1.5rem 1.25rem 1rem;
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .gallery-filter-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      background-color: var(--slate-200);
+      color: var(--slate-700);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .gallery-filter-btn:hover {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+    .gallery-filter-btn.active {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(234,88,12,0.25);
+    }
+  </style>
+
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 <body>
 
+  <!-- TOP BAR -->
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-left">
-        <div class="top-bar-item accent"><i data-lucide="shield-check"></i><span>MSME: UDYAM-MH-17-0244739</span></div>
-        <div class="top-bar-item"><i data-lucide="clock"></i><span>Available 24/7</span></div>
+        <span style="display:inline-flex;align-items:center;gap:0.4rem;">
+          <span class="live-dot"></span> 24/7 Nalasopara, Palghar &amp; Mumbai Relocation Helpline
+        </span>
+        <span style="opacity:0.4;">•</span>
+        <span>Govt. MSME Reg: <strong>UDYAM-MH-17-0244739</strong></span>
       </div>
       <div class="top-bar-right">
-        <a href="tel:+918218059678" class="top-bar-phone"><i data-lucide="phone-call"></i><span>+91 8218059678</span></a>
-        <a href="tel:+919371482180" class="top-bar-phone"><i data-lucide="phone"></i><span>+91 9371482180</span></a>
+        <a href="tel:+918218059678"><i data-lucide="phone-call" style="width:14px;height:14px;"></i> +91 8218059678</a>
+        <span style="opacity:0.4;">|</span>
+        <a href="mailto:shantanupackers@gmail.com"><i data-lucide="mail" style="width:14px;height:14px;"></i> shantanupackers@gmail.com</a>
       </div>
     </div>
   </div>
 
+  <!-- STICKY HEADER -->
   <header class="site-header" id="site-header">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="Shantanu Packers and Movers Logo" class="brand-logo-img"><div class="logo-text"><span class="logo-name">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="gallery.html" class="nav-link active">Gallery</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Shantanu Packers and Movers Logo" class="brand-logo-img" width="48" height="48">
+        <div class="logo-title-group">
+          <div class="logo-main-title">SHANTANU <span>PACKERS &amp; MOVERS</span></div>
+          <div class="logo-sub-tag">Govt. Registered Relocation Enterprise</div>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item-link">Home</a>
+        <a href="about.html" class="nav-item-link">About</a>
+        <a href="services.html" class="nav-item-link">Services</a>
+        <a href="gallery.html" class="nav-item-link active">Gallery</a>
+        <a href="pricing.html" class="nav-item-link">Pricing</a>
+        <a href="contact.html" class="nav-item-link">Contact</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-item-link">Legal <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></a>
+          <div class="dropdown-menu">
+            <a href="terms-and-conditions.html" class="dropdown-item">Terms &amp; Conditions</a>
+            <a href="privacy-policy.html" class="dropdown-item">Privacy Policy</a>
+          </div>
+        </div>
       </nav>
-      <div class="nav-actions">
-        <a href="quote.html" class="btn btn-primary btn-sm"><i data-lucide="file-text"></i> Get Free Quote</a>
-        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
+      <div class="header-actions">
+        <a href="tel:+918218059678" class="btn-header-call"><i data-lucide="phone" style="width:15px;height:15px;color:var(--primary);"></i><span>+91 8218059678</span></a>
+        <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="btn-header-wa"><i data-lucide="message-circle" style="width:16px;height:16px;"></i><span>WhatsApp</span></a>
+        <a href="quote.html" class="btn-header-quote"><i data-lucide="file-text" style="width:15px;height:15px;"></i><span>Get Free Quote</span></a>
+        <button class="btn-mobile-toggle" id="btn-hamburger" aria-label="Open mobile menu"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
       </div>
     </div>
   </header>
 
-  <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true">
-    <div class="drawer-backdrop" id="drawer-backdrop"></div>
-    <div class="drawer-panel">
-      <div class="drawer-header">
-        <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="" class="brand-logo-img" style="height:36px"><div class="logo-text"><span class="logo-name" style="font-size:1rem">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
-        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close"><i data-lucide="x"></i></button>
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <img src="assets/images/logo.png" alt="" style="height:38px;">
+          <div class="logo-title-group"><div class="logo-main-title" style="font-size:1rem;">SHANTANU</div><div class="logo-sub-tag">Packers &amp; Movers</div></div>
+        </div>
+        <button class="btn-mobile-toggle" id="btn-close-drawer" aria-label="Close menu"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
       </div>
-      <nav class="drawer-body">
-        <a href="index.html" class="drawer-nav-link">Home<i data-lucide="chevron-right"></i></a>
-        <a href="about.html" class="drawer-nav-link">About Us<i data-lucide="chevron-right"></i></a>
-        <a href="services.html" class="drawer-nav-link">Services<i data-lucide="chevron-right"></i></a>
-        <a href="gallery.html" class="drawer-nav-link active">Gallery<i data-lucide="chevron-right"></i></a>
-        <a href="pricing.html" class="drawer-nav-link">Pricing<i data-lucide="chevron-right"></i></a>
-        <a href="contact.html" class="drawer-nav-link">Contact<i data-lucide="chevron-right"></i></a>
-      </nav>
-      <div class="drawer-footer">
-        <a href="quote.html" class="btn btn-primary btn-full"><i data-lucide="file-text"></i> Get Free Quote</a>
-        <a href="tel:+918218059678" class="btn btn-outline btn-full"><i data-lucide="phone-call"></i> Call Now</a>
-        <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="btn btn-whatsapp btn-full"><i data-lucide="message-circle"></i> WhatsApp Us</a>
+      <div class="mobile-drawer-body">
+        <a href="index.html" class="m-nav-link">Home <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="about.html" class="m-nav-link">About Us <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="services.html" class="m-nav-link">Services <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="gallery.html" class="m-nav-link active">Gallery <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="pricing.html" class="m-nav-link">Pricing <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
+        <a href="contact.html" class="m-nav-link">Contact <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></a>
       </div>
     </div>
   </div>
 
   <main>
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-      <div class="container page-hero-inner">
-        <div class="breadcrumb"><a href="index.html">Home</a><i data-lucide="chevron-right"></i>Gallery</div>
-        <h1 class="page-hero-title">Our Work in Pictures</h1>
-        <p class="page-hero-sub">Real photos from our professional packing, loading, vehicle transport, and storage operations.</p>
+    <section style="background-color:var(--navy-900);color:#FFFFFF;padding:4rem 0 3.5rem;text-align:center;">
+      <div class="container">
+        <span class="eyebrow-badge">REAL OPERATIONAL PROOF</span>
+        <h1 class="section-main-heading" style="color:#FFFFFF;margin-top:0.5rem;">Packaging &amp; Moving Gallery</h1>
+        <p class="section-subtext" style="color:var(--slate-300);max-width:650px;margin:0 auto;">
+          Real ground-level photographs of our trained crew packing, loading, and safely transporting furniture, electronics, and vehicles.
+        </p>
       </div>
     </section>
 
-    <!-- GALLERY -->
-    <section class="section section-white">
+    <!-- Filter Buttons & Gallery Grid -->
+    <section class="section section-slate">
       <div class="container">
 
-        <!-- Filter buttons -->
-        <div class="gallery-filters" id="gallery-filters">
-          <button class="filter-btn active" data-filter="all">All Work</button>
-          <button class="filter-btn" data-filter="packing">Packing</button>
-          <button class="filter-btn" data-filter="loading">Loading</button>
-          <button class="filter-btn" data-filter="vehicle">Vehicle Transport</button>
-          <button class="filter-btn" data-filter="storage">Storage</button>
-          <button class="filter-btn" data-filter="office">Office Moves</button>
+        <div style="display:flex;justify-content:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+          <button class="gallery-filter-btn active" data-filter="all">All Photos</button>
+          <button class="gallery-filter-btn" data-filter="packing">Packing Quality</button>
+          <button class="gallery-filter-btn" data-filter="loading">Truck Loading</button>
+          <button class="gallery-filter-btn" data-filter="vehicle">Car &amp; Bike Transport</button>
+          <button class="gallery-filter-btn" data-filter="storage">Warehouse</button>
         </div>
 
-        <!-- Gallery Grid -->
-        <div class="gallery-grid" id="gallery-grid">
-          <div class="gallery-item reveal" data-category="packing">
-            <img src="assets/images/packing_furniture_real_1787565746958.jpg" alt="Professional furniture packing" loading="lazy">
-            <div class="gallery-item-overlay">
-              <span class="gallery-item-label">Professional Furniture Packing</span>
-            </div>
+        <div class="gallery-grid-mrl">
+          <div class="gallery-grid-item" data-category="packing">
+            <img src="assets/images/packing_furniture_real_1787565746958.jpg" alt="Furniture Packing" loading="lazy">
+            <div class="gallery-item-caption">4-Layer Furniture Bubble Wrapping</div>
           </div>
-          <div class="gallery-item reveal reveal-d1" data-category="loading">
-            <img src="assets/images/truck_loading_real_1787565770517.jpg" alt="Loading truck professionally" loading="lazy">
-            <div class="gallery-item-overlay">
-              <span class="gallery-item-label">Professional Truck Loading</span>
-            </div>
+          <div class="gallery-grid-item" data-category="loading">
+            <img src="assets/images/truck_loading_real_1787565770517.jpg" alt="Truck Loading" loading="lazy">
+            <div class="gallery-item-caption">Careful Truck Loading &amp; Lashing</div>
           </div>
-          <div class="gallery-item reveal reveal-d2" data-category="packing">
-            <img src="assets/images/home_boxes_shifting_1787565790233.jpg" alt="Home boxes ready for shifting" loading="lazy">
-            <div class="gallery-item-overlay">
-              <span class="gallery-item-label">Home Boxes Ready for Move</span>
-            </div>
+          <div class="gallery-grid-item" data-category="packing">
+            <img src="assets/images/home_boxes_shifting_1787565790233.jpg" alt="Home Boxes" loading="lazy">
+            <div class="gallery-item-caption">Heavy-Duty Carton Boxes Packed</div>
           </div>
-          <div class="gallery-item reveal" data-category="office">
-            <img src="assets/images/office_moving_real_1787565809256.jpg" alt="Office relocation in progress" loading="lazy">
-            <div class="gallery-item-overlay">
-              <span class="gallery-item-label">Office Relocation</span>
-            </div>
+          <div class="gallery-grid-item" data-category="loading">
+            <img src="assets/images/office_moving_real_1787565809256.jpg" alt="Office Move" loading="lazy">
+            <div class="gallery-item-caption">Corporate Office Workstation Shifting</div>
           </div>
-          <div class="gallery-item reveal reveal-d1" data-category="vehicle">
-            <img src="assets/images/bike_car_transport_real_1787565834416.jpg" alt="Bike and car transport" loading="lazy">
-            <div class="gallery-item-overlay">
-              <span class="gallery-item-label">Car &amp; Bike Transportation</span>
-            </div>
+          <div class="gallery-grid-item" data-category="vehicle">
+            <img src="assets/images/bike_car_transport_real_1787565834416.jpg" alt="Car &amp; Bike Transport" loading="lazy">
+            <div class="gallery-item-caption">Car &amp; Bike Multi-Carrier Transit</div>
           </div>
-          <div class="gallery-item reveal reveal-d2" data-category="storage">
-            <img src="assets/images/warehouse_storage_real_1787565851001.jpg" alt="Warehouse storage facility" loading="lazy">
-            <div class="gallery-item-overlay">
-              <span class="gallery-item-label">Secure Warehouse Storage</span>
-            </div>
+          <div class="gallery-grid-item" data-category="storage">
+            <img src="assets/images/warehouse_storage_real_1787565851001.jpg" alt="Warehouse Storage" loading="lazy">
+            <div class="gallery-item-caption">Secure 24/7 CCTV Monitored Warehouse</div>
           </div>
-          <div class="gallery-item reveal" data-category="packing">
-            <img src="assets/images/crockery_packing_real_1787565867505.jpg" alt="Professional crockery packing" loading="lazy">
-            <div class="gallery-item-overlay">
-              <span class="gallery-item-label">Fragile Item Packing</span>
-            </div>
+          <div class="gallery-grid-item" data-category="packing">
+            <img src="assets/images/crockery_packing_real_1787565867505.jpg" alt="Crockery Packing" loading="lazy">
+            <div class="gallery-item-caption">Delicate Crockery &amp; Glassware Crating</div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- CTA -->
-    <div class="cta-strip">
-      <div class="container">
-        <h2 class="cta-strip-title reveal">Impressed by Our Work?</h2>
-        <p class="cta-strip-sub reveal">Let us handle your relocation with the same level of care and professionalism. Get your free quote today.</p>
-        <div class="cta-strip-btns reveal">
-          <a href="quote.html" class="btn btn-secondary btn-lg"><i data-lucide="file-text"></i> Get Free Quote</a>
-          <a href="tel:+918218059678" class="btn btn-ghost btn-lg"><i data-lucide="phone-call"></i> +91 8218059678</a>
-        </div>
-      </div>
-    </div>
   </main>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-    <button class="lb-close" id="lb-close" aria-label="Close image viewer"><i data-lucide="x"></i></button>
-    <img src="" alt="" class="lb-img" id="lb-img">
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image"><i data-lucide="x"></i></button>
+    <img src="" alt="" class="lightbox-img" id="lightbox-img">
   </div>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div><img src="assets/images/logo.png" alt="" class="footer-logo-img"><div style="display:flex;flex-direction:column;line-height:1;margin-top:0.75rem;"><span class="footer-logo-name">SHANTANU</span><span class="footer-logo-tag">Packers &amp; Movers</span></div><p class="footer-desc">MSME-registered professional relocation experts since 2019.</p><div class="footer-msme"><i data-lucide="shield-check"></i> UDYAM-MH-17-0244739</div></div>
-        <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About Us</a><a href="services.html" class="footer-link">Services</a><a href="gallery.html" class="footer-link">Gallery</a><a href="pricing.html" class="footer-link">Pricing</a><a href="contact.html" class="footer-link">Contact</a></div></div>
-        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html" class="footer-link">Household Shifting</a><a href="services.html" class="footer-link">Office Relocation</a><a href="services.html" class="footer-link">Car Transportation</a><a href="services.html" class="footer-link">Bike Transportation</a></div></div>
-        <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><i data-lucide="map-pin"></i><span>Nalasopara East, MH - 401209</span></div><div class="footer-contact-item"><i data-lucide="phone-call"></i><span><a href="tel:+918218059678">+91 8218059678</a></span></div><div class="footer-contact-item"><i data-lucide="mail"></i><span><a href="mailto:shantanupackers@gmail.com">shantanupackers@gmail.com</a></span></div></div>
+        <div>
+          <img src="assets/images/logo.png" alt="" class="footer-brand-logo">
+          <div style="font-family:var(--font-heading);font-size:1.15rem;font-weight:900;color:#FFFFFF;margin-top:0.75rem;">SHANTANU <span>PACKERS &amp; MOVERS</span></div>
+          <p style="font-size:0.85rem;color:var(--slate-400);line-height:1.6;margin:0.75rem 0 1rem;">Govt. MSME Registered relocation enterprise providing safe, professional household shifting, office moving &amp; vehicle transport across India.</p>
+          <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.75rem;border-radius:var(--radius-full);background:rgba(234,88,12,0.15);border:1px solid rgba(234,88,12,0.3);color:#FB923C;font-size:0.75rem;font-weight:700;"><i data-lucide="shield-check" style="width:13px;height:13px;"></i> UDYAM-MH-17-0244739</div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Quick Links</div>
+          <div class="footer-links-list">
+            <a href="index.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Home</a>
+            <a href="about.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> About Us</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Services</a>
+            <a href="gallery.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Gallery</a>
+            <a href="pricing.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Pricing</a>
+            <a href="contact.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Our Services</div>
+          <div class="footer-links-list">
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Household Shifting</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Office Relocation</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Car Transportation</a>
+            <a href="services.html" class="footer-link-item"><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--primary);"></i> Bike Shifting</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Registered Office</div>
+          <div class="footer-contact-row"><i data-lucide="map-pin"></i><span>S/N 01, Bilal Pada, PALGHAR Road, Nalasopara East, Maharashtra - 401209</span></div>
+          <div class="footer-contact-row"><i data-lucide="phone-call"></i><a href="tel:+918218059678">+91 8218059678</a></div>
+          <div class="footer-contact-row"><i data-lucide="mail"></i><a href="mailto:shantanupackers@gmail.com">shantanupackers@gmail.com</a></div>
+        </div>
       </div>
-      <div class="footer-bottom"><div class="footer-copy">&copy; 2024 Shantanu Packers and Movers. All rights reserved.</div><div class="footer-bottom-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-and-conditions.html">Terms &amp; Conditions</a></div></div>
+      <div class="footer-bottom-row">
+        <div>&copy; 2024 Shantanu Packers and Movers. All Rights Reserved.</div>
+        <div style="display:flex;gap:1.5rem;"><a href="terms-and-conditions.html" style="color:var(--slate-400);">Terms &amp; Conditions</a><a href="privacy-policy.html" style="color:var(--slate-400);">Privacy Policy</a></div>
+      </div>
     </div>
   </footer>
 
-  <div class="mobile-bottom-bar"><div class="mobile-bar-grid"><a href="tel:+918218059678" class="mbb-btn mbb-call"><i data-lucide="phone-call"></i>Call Now</a><a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="mbb-btn mbb-wa"><i data-lucide="message-circle"></i>WhatsApp</a><a href="quote.html" class="mbb-btn mbb-quote"><i data-lucide="file-text"></i>Get Free Quote</a></div></div>
-  <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+  <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="floating-wa-btn"><i data-lucide="message-circle"></i></a>
 </body>
 </html>
