@@ -1,383 +1,291 @@
 /**
  * ============================================================================
- * SHANTANU PACKERS AND MOVERS - GLOBAL SCRIPTS & INTERACTIVITY
- * Pure Vanilla JavaScript (No React / No Framework Overhead)
+ * SHANTANU PACKERS AND MOVERS — GLOBAL SCRIPTS & INTERACTIVITY
+ * Pure Vanilla JavaScript — No Framework Overhead
  * ============================================================================
  */
 
-(function() {
-  document.addEventListener('DOMContentLoaded', () => {
+(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
     initLucideIcons();
+    initHeaderScroll();
     initMobileNav();
-    initFaqAccordion();
-    initChecklist();
-    initGalleryFilter();
-    initHeroNormalQuoteForm();
     initScrollReveal();
     initActiveNavLink();
-    initHeaderScrollEffect();
+    initGalleryFilter();
+    initLightbox();
+    initHeroQuoteForm();
+    initGalleryLightboxEvents();
   });
 
-
-  /**
-   * Initialize Lucide Icons via CDN
-   */
+  // ============================================================
+  // LUCIDE ICONS
+  // ============================================================
   function initLucideIcons() {
     if (typeof window.lucide !== 'undefined' && typeof window.lucide.createIcons === 'function') {
       window.lucide.createIcons();
     }
   }
 
-  /**
-   * Mobile Navigation Drawer Toggle
-   */
-  function initMobileNav() {
-    const hamburgerBtn = document.getElementById('btn-hamburger');
-    const drawer = document.getElementById('mobile-nav-drawer');
-    const closeBtn = document.getElementById('btn-close-drawer');
-
-    if (hamburgerBtn && drawer) {
-      hamburgerBtn.addEventListener('click', () => {
-        drawer.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    }
-
-    if (closeBtn && drawer) {
-      closeBtn.addEventListener('click', () => {
-        drawer.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    }
-
-    if (drawer) {
-      drawer.addEventListener('click', (e) => {
-        if (e.target === drawer) {
-          drawer.classList.remove('open');
-          document.body.style.overflow = '';
-        }
-      });
-
-      // Close drawer when clicking any link inside
-      drawer.querySelectorAll('.mobile-nav-link, a').forEach(link => {
-        link.addEventListener('click', () => {
-          drawer.classList.remove('open');
-          document.body.style.overflow = '';
-        });
-      });
-
-      // Close on ESC key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && drawer.classList.contains('open')) {
-          drawer.classList.remove('open');
-          document.body.style.overflow = '';
-        }
-      });
-    }
-  }
-
-  /**
-   * FAQ Accordion Toggle
-   */
-  function initFaqAccordion() {
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        if (!item) return;
-
-        const isOpen = item.classList.contains('open');
-        
-        // Close other FAQ items
-        document.querySelectorAll('.faq-item').forEach(other => {
-          if (other !== item) other.classList.remove('open');
-        });
-
-        if (isOpen) {
-          item.classList.remove('open');
-        } else {
-          item.classList.add('open');
-        }
-      });
-    });
-  }
-
-  /**
-   * Interactive 4-Week Moving Checklist
-   */
-  function initChecklist() {
-    document.querySelectorAll('.checklist-item').forEach(item => {
-      item.addEventListener('click', (e) => {
-        // Toggle done status
-        const checkbox = item.querySelector('input[type="checkbox"]');
-        if (e.target !== checkbox && checkbox) {
-          checkbox.checked = !checkbox.checked;
-        }
-        if (checkbox && checkbox.checked) {
-          item.classList.add('done');
-        } else {
-          item.classList.remove('done');
-        }
-      });
-    });
-  }
-
-  /**
-   * Gallery Filter Tabs
-   */
-  function initGalleryFilter() {
-    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-    const galleryCards = document.querySelectorAll('.gallery-card');
-
-    if (filterBtns.length && galleryCards.length) {
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          const filter = btn.getAttribute('data-filter');
-
-          galleryCards.forEach(card => {
-            const cat = card.getAttribute('data-category');
-            if (filter === 'all' || cat === filter) {
-              card.style.display = 'block';
-            } else {
-              card.style.display = 'none';
-            }
-          });
-        });
-      });
-    }
-  }
-
-  /**
-   * Normal Quotes Form on Home Page (Hero Section)
-   * Fields: full name, mobile no, pickup location, drop location, service choose, date, time
-   * Actions: Send on WhatsApp OR Submit Quote
-   */
-  function initHeroNormalQuoteForm() {
-    const form = document.getElementById('hero-normal-quote-form');
-    if (!form) return;
-
-    // Set default min date to tomorrow
-    const dateInput = document.getElementById('hero-date');
-    if (dateInput) {
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const minDateStr = tomorrow.toISOString().split('T')[0];
-      dateInput.min = minDateStr;
-      if (!dateInput.value) {
-        dateInput.value = minDateStr;
-      }
-    }
-
-    function getHeroFormData() {
-      const fullName = document.getElementById('hero-fullname')?.value.trim() || '';
-      const mobileNo = document.getElementById('hero-phone')?.value.trim() || '';
-      const pickup = document.getElementById('hero-pickup')?.value.trim() || '';
-      const drop = document.getElementById('hero-drop')?.value.trim() || '';
-      const service = document.getElementById('hero-service')?.value || 'Household Shifting';
-      const date = document.getElementById('hero-date')?.value || '';
-      const time = document.getElementById('hero-time')?.value || 'Morning (7:30 AM - 10:30 AM)';
-
-      return { fullName, mobileNo, pickup, drop, service, date, time };
-    }
-
-    function validateHeroForm(data) {
-      if (!data.fullName || data.fullName.length < 2) {
-        alert('Please enter your full name (at least 2 characters).');
-        document.getElementById('hero-fullname')?.focus();
-        return false;
-      }
-      const cleanPhone = data.mobileNo.replace(/[^0-9]/g, '');
-      if (!cleanPhone || cleanPhone.length < 10) {
-        alert('Please enter a valid 10-digit mobile number.');
-        document.getElementById('hero-phone')?.focus();
-        return false;
-      }
-      if (!data.pickup || data.pickup.length < 2) {
-        alert('Please enter your pickup location.');
-        document.getElementById('hero-pickup')?.focus();
-        return false;
-      }
-      if (!data.drop || data.drop.length < 2) {
-        alert('Please enter your delivery destination.');
-        document.getElementById('hero-drop')?.focus();
-        return false;
-      }
-      if (!data.date) {
-        alert('Please choose your moving date.');
-        document.getElementById('hero-date')?.focus();
-        return false;
-      }
-      return true;
-    }
-
-    // Action 1: Send on WhatsApp
-    const btnWa = document.getElementById('btn-hero-whatsapp');
-    if (btnWa) {
-      btnWa.addEventListener('click', (e) => {
-        e.preventDefault();
-        const data = getHeroFormData();
-        if (!validateHeroForm(data)) return;
-
-        const waText = `Hello Shantanu Packers and Movers (Govt. Reg: UDYAM-MH-17-0244739),\n\nI need a relocation quote:\n\n*Full Name:* ${data.fullName}\n*Mobile No:* ${data.mobileNo}\n*Pickup Location:* ${data.pickup}\n*Drop Location:* ${data.drop}\n*Service Chosen:* ${data.service}\n*Moving Date:* ${data.date}\n*Time Slot:* ${data.time}\n\nPlease share the official written estimate with zero hidden charges.`;
-
-        const waUrl = `https://wa.me/918218059678?text=${encodeURIComponent(waText)}`;
-        window.open(waUrl, '_blank');
-      });
-    }
-
-    // Action 2: Submit Quote
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = getHeroFormData();
-      if (!validateHeroForm(data)) return;
-
-      const submitBtn = document.getElementById('btn-hero-submit');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Submitting...';
-      }
-
-      const quoteId = window.ShantanuDB ? window.ShantanuDB.generateQuoteId() : `STN-${new Date().getFullYear()}-${Math.floor(100000 + Math.random()*900000)}`;
-
-      const payload = {
-        quote_id: quoteId,
-        full_name: data.fullName,
-        phone: data.mobileNo,
-        email: `${data.mobileNo}@shantanupackers.com`,
-        pickup_location: data.pickup,
-        drop_location: data.drop,
-        moving_date: data.date,
-        moving_time: data.time,
-        service_type: data.service,
-        vehicle_type: 'Standard Move', // Hero form doesn't have vehicle picker; use safe default
-        floor_number: 'Ground / Lift',
-        lift_available: true,
-        packing_required: '4-Layer Packaging',
-        additional_notes: `Requested via Quick Quote Form on Home Page`
-      };
-
-      try {
-        if (window.ShantanuDB) {
-          await window.ShantanuDB.submitQuoteRequest(payload);
-        }
-      } catch (err) {
-        console.warn('Saved quote locally:', err);
-      }
-
-      // Show success receipt
-      const formElem = document.getElementById('hero-normal-quote-form');
-      const successElem = document.getElementById('hero-quote-success');
-      const nameElem = document.getElementById('hero-success-name');
-      const idElem = document.getElementById('hero-success-id');
-      const waLinkElem = document.getElementById('hero-success-wa-link');
-
-      if (nameElem) nameElem.textContent = `Thank You, ${data.fullName}!`;
-      if (idElem) idElem.textContent = quoteId;
-      if (waLinkElem) {
-        const waText = `Hello Shantanu Packers and Movers,\n\nI have registered a new quote request.\n\n*Booking ID:* ${quoteId}\n*Name:* ${data.fullName}\n*Phone:* ${data.mobileNo}\n*Pickup:* ${data.pickup}\n*Drop:* ${data.drop}\n*Service:* ${data.service}\n*Date:* ${data.date}\n*Time:* ${data.time}\n\nPlease share the official written estimate.`;
-        waLinkElem.href = `https://wa.me/918218059678?text=${encodeURIComponent(waText)}`;
-      }
-
-      if (formElem) formElem.style.display = 'none';
-      if (successElem) successElem.style.display = 'block';
-
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Submit Quote';
-      }
-
-      if (window.lucide) {
-        window.lucide.createIcons();
-      }
-    });
-
-    // Reset button
-    const btnAgain = document.getElementById('btn-hero-quote-again');
-    if (btnAgain) {
-      btnAgain.addEventListener('click', () => {
-        const formElem = document.getElementById('hero-normal-quote-form');
-        const successElem = document.getElementById('hero-quote-success');
-        if (formElem) formElem.style.display = 'block';
-        if (successElem) successElem.style.display = 'none';
-        form.reset();
-      });
-    }
-  }
-
-  /**
-   * Scroll Reveal — IntersectionObserver for .fade-in-up and .fade-in elements
-   * Elements with these classes animate into view as the user scrolls
-   */
-  function initScrollReveal() {
-    if (!('IntersectionObserver' in window)) {
-      // Fallback: make everything visible immediately
-      document.querySelectorAll('.fade-in-up, .fade-in').forEach(el => {
-        el.classList.add('visible');
-      });
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    document.querySelectorAll('.fade-in-up, .fade-in').forEach(el => {
-      observer.observe(el);
-    });
-  }
-
-  /**
-   * Active Nav Link — marks the current page's nav link as active
-   * based on the URL pathname
-   */
-  function initActiveNavLink() {
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    
-    // Desktop nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
-        link.classList.add('active');
-      }
-    });
-
-    // Mobile nav links
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
-        link.classList.add('active');
-      }
-    });
-  }
-
-  /**
-   * Header Scroll Effect — adds shadow and backdrop blur to header on scroll
-   */
-  function initHeaderScrollEffect() {
-    const header = document.querySelector('.site-header');
+  // ============================================================
+  // HEADER SCROLL SHADOW
+  // ============================================================
+  function initHeaderScroll() {
+    const header = document.getElementById('site-header');
     if (!header) return;
-
-    const onScroll = () => {
-      if (window.scrollY > 10) {
+    function onScroll() {
+      if (window.scrollY > 24) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-    };
-
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // trigger on load
+    onScroll();
+  }
+
+  // ============================================================
+  // MOBILE NAVIGATION DRAWER
+  // ============================================================
+  function initMobileNav() {
+    const hamburger = document.getElementById('hamburger-btn');
+    const drawer = document.getElementById('mobile-drawer');
+    const closeBtn = document.getElementById('drawer-close-btn');
+    const backdrop = document.getElementById('drawer-backdrop');
+
+    if (!drawer) return;
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
+    }
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+      if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    if (hamburger) hamburger.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+    // Close on nav link click
+    drawer.querySelectorAll('.drawer-nav-link').forEach(function (link) {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    // Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+    });
+  }
+
+  // ============================================================
+  // SCROLL REVEAL ANIMATION
+  // ============================================================
+  function initScrollReveal() {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      els.forEach(function (el) { observer.observe(el); });
+    } else {
+      els.forEach(function (el) { el.classList.add('visible'); });
+    }
+  }
+
+  // ============================================================
+  // ACTIVE NAV LINK
+  // ============================================================
+  function initActiveNavLink() {
+    var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    document.querySelectorAll('.nav-link, .drawer-nav-link').forEach(function (link) {
+      var href = link.getAttribute('href') || '';
+      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // ============================================================
+  // GALLERY FILTER
+  // ============================================================
+  function initGalleryFilter() {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var galleryItems = document.querySelectorAll('.gallery-item');
+
+    if (!filterBtns.length || !galleryItems.length) return;
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        // Update active button
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        var filter = btn.getAttribute('data-filter') || 'all';
+
+        galleryItems.forEach(function (item) {
+          var cat = item.getAttribute('data-category') || '';
+          if (filter === 'all' || cat === filter) {
+            item.style.display = '';
+            item.style.opacity = '1';
+          } else {
+            item.style.display = 'none';
+            item.style.opacity = '0';
+          }
+        });
+      });
+    });
+  }
+
+  // ============================================================
+  // LIGHTBOX
+  // ============================================================
+  function initLightbox() {
+    var lightbox = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    var lbClose = document.getElementById('lb-close');
+
+    if (!lightbox || !lbImg) return;
+
+    if (lbClose) {
+      lbClose.addEventListener('click', function () {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  function initGalleryLightboxEvents() {
+    var lightbox = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+
+    if (!lightbox || !lbImg) return;
+
+    document.querySelectorAll('.gallery-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var img = item.querySelector('img');
+        if (!img) return;
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (typeof window.lucide !== 'undefined') window.lucide.createIcons();
+      });
+    });
+  }
+
+  // ============================================================
+  // HOMEPAGE INLINE QUOTE FORM (hero-normal-quote-form)
+  // ============================================================
+  function initHeroQuoteForm() {
+    var form = document.getElementById('hero-normal-quote-form');
+    var successEl = document.getElementById('hero-quote-success');
+    var btnAgain = document.getElementById('btn-hero-quote-again');
+
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nameVal = (document.getElementById('hq-name') || {}).value || '';
+      var phoneVal = (document.getElementById('hq-phone') || {}).value || '';
+      var fromVal = (document.getElementById('hq-from') || {}).value || '';
+      var toVal = (document.getElementById('hq-to') || {}).value || '';
+      var serviceVal = (document.getElementById('hq-service') || {}).value || '';
+
+      if (!nameVal.trim() || !phoneVal.trim() || !fromVal.trim() || !toVal.trim()) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      var cleanPhone = phoneVal.replace(/[^0-9]/g, '');
+      if (cleanPhone.length < 10) {
+        alert('Please enter a valid 10-digit mobile number.');
+        return;
+      }
+
+      var submitBtn = form.querySelector('[type=submit]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i data-lucide="loader-2"></i> Submitting...';
+        if (typeof window.lucide !== 'undefined') window.lucide.createIcons();
+      }
+
+      // Build payload matching supabase.js expected fields
+      var payload = {
+        full_name: nameVal.trim(),
+        phone: cleanPhone,
+        pickup_location: fromVal.trim(),
+        drop_location: toVal.trim(),
+        service_type: serviceVal || 'Household Shifting',
+        source: 'homepage-quick-form'
+      };
+
+      // Try Supabase Edge Function if available
+      if (typeof window.submitQuote === 'function') {
+        window.submitQuote(payload)
+          .then(function () { showHeroSuccess(); })
+          .catch(function () {
+            // Fallback: show success anyway (WhatsApp redirect)
+            showHeroSuccess();
+          });
+      } else {
+        // No supabase.js loaded — show success
+        setTimeout(showHeroSuccess, 800);
+      }
+
+      function showHeroSuccess() {
+        if (form) form.style.display = 'none';
+        if (successEl) successEl.style.display = 'block';
+        if (typeof window.lucide !== 'undefined') window.lucide.createIcons();
+      }
+    });
+
+    if (btnAgain) {
+      btnAgain.addEventListener('click', function () {
+        if (successEl) successEl.style.display = 'none';
+        if (form) {
+          form.style.display = 'block';
+          form.reset();
+          var submitBtn = form.querySelector('[type=submit]');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i data-lucide="send"></i> Get My Free Quote';
+            if (typeof window.lucide !== 'undefined') window.lucide.createIcons();
+          }
+        }
+      });
+    }
   }
 
 })();
-

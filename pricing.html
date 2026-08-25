@@ -1,17 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rates & Pricing | Shantanu Packers and Movers</title>
-  <meta name="description" content="Transparent, standard pricing and intercity rate cards for household shifting, office moving, and vehicle transport. 100% written binding quotes with zero hidden fees.">
-  <link rel="canonical" href="https://shantanupackers.com/pricing.html">
+  <title>Pricing | Shantanu Packers and Movers — Transparent Moving Costs</title>
+  <meta name="description" content="Shantanu Packers and Movers transparent pricing for household shifting, office relocation, vehicle transport, and storage. No hidden charges. Get a free quote for exact costs.">
+  <link rel="canonical" href="https://shantanupackers-movers-nine.vercel.app/pricing.html">
+  <meta name="theme-color" content="#F97316">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/ui-enhancements.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
@@ -19,374 +18,323 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-left">
-        <div class="top-bar-item highlight">
-          <i data-lucide="shield-check"></i>
-          <span>Govt. MSME Registered: <strong>UDYAM-MH-17-0244739</strong></span>
-        </div>
+        <div class="top-bar-item accent"><i data-lucide="shield-check"></i><span>MSME: UDYAM-MH-17-0244739</span></div>
+        <div class="top-bar-item"><i data-lucide="clock"></i><span>Available 24/7</span></div>
       </div>
       <div class="top-bar-right">
-        <a href="tel:+918218059678" class="top-bar-phone">
-          <i data-lucide="phone-call"></i>
-          <span>+91 8218059678</span>
-        </a>
+        <a href="tel:+918218059678" class="top-bar-phone"><i data-lucide="phone-call"></i><span>+91 8218059678</span></a>
+        <a href="tel:+919371482180" class="top-bar-phone"><i data-lucide="phone"></i><span>+91 9371482180</span></a>
       </div>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo" title="Shantanu Packers and Movers">
-        <img src="assets/images/logo.png" alt="Shantanu Packers and Movers Official Logo" class="brand-logo-img">
-        <div class="logo-text">
-          <span class="logo-title">SHANTANU</span>
-          <span class="logo-subtitle">PACKERS &amp; MOVERS</span>
-        </div>
-      </a>
-
-      <nav class="nav-links">
+      <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="Shantanu Packers and Movers Logo" class="brand-logo-img"><div class="logo-text"><span class="logo-name">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
+      <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About Us</a>
         <a href="services.html" class="nav-link">Services</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="pricing.html" class="nav-link active">Rates & Pricing</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
-
       <div class="nav-actions">
-        <a href="quote.html" class="btn btn-primary btn-sm">
-          <i data-lucide="calendar-check"></i>
-          <span>Book a Move</span>
-        </a>
-        <button type="button" class="hamburger-btn" id="btn-hamburger" aria-label="Open Menu"><i data-lucide="menu"></i></button>
+        <a href="quote.html" class="btn btn-primary btn-sm"><i data-lucide="file-text"></i> Get Free Quote</a>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Drawer -->
-  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
-    <div class="mobile-nav-content">
-      <div class="mobile-nav-header">
-        <div class="brand-logo">
-          <img src="assets/images/logo.png" alt="Shantanu Packers and Movers" class="brand-logo-img-sm">
-          <div class="logo-text">
-            <span class="logo-title">SHANTANU</span>
-            <span class="logo-subtitle">PACKERS &amp; MOVERS</span>
-          </div>
-        </div>
-        <button type="button" class="btn-outline btn-sm" id="btn-close-drawer" aria-label="Close Navigation" title="Close Navigation">
-          <i data-lucide="x"></i>
-        </button>
+  <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true">
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="" class="brand-logo-img" style="height:36px"><div class="logo-text"><span class="logo-name" style="font-size:1rem">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close"><i data-lucide="x"></i></button>
       </div>
-      <div class="mobile-nav-links">
-        <a href="index.html" class="mobile-nav-link">Home <i data-lucide="chevron-right"></i></a>
-        <a href="about.html" class="mobile-nav-link">About Us <i data-lucide="chevron-right"></i></a>
-        <a href="services.html" class="mobile-nav-link">Relocation Services <i data-lucide="chevron-right"></i></a>
-        <a href="gallery.html" class="mobile-nav-link">Moving Gallery <i data-lucide="chevron-right"></i></a>
-        <a href="pricing.html" class="mobile-nav-link active">Rates & Pricing <i data-lucide="chevron-right"></i></a>
-        <a href="contact.html" class="mobile-nav-link">Contact <i data-lucide="chevron-right"></i></a>
-        <a href="terms-and-conditions.html" class="mobile-nav-link">Terms & Conditions <i data-lucide="chevron-right"></i></a>
-        <a href="privacy-policy.html" class="mobile-nav-link">Privacy Policy <i data-lucide="chevron-right"></i></a>
-      </div>
-      <div class="drawer-cta-block">
-        <a href="quote.html" class="btn btn-primary" style="width: 100%;">
-          Get Free Binding Quote
-        </a>
+      <nav class="drawer-body">
+        <a href="index.html" class="drawer-nav-link">Home<i data-lucide="chevron-right"></i></a>
+        <a href="about.html" class="drawer-nav-link">About Us<i data-lucide="chevron-right"></i></a>
+        <a href="services.html" class="drawer-nav-link">Services<i data-lucide="chevron-right"></i></a>
+        <a href="gallery.html" class="drawer-nav-link">Gallery<i data-lucide="chevron-right"></i></a>
+        <a href="pricing.html" class="drawer-nav-link active">Pricing<i data-lucide="chevron-right"></i></a>
+        <a href="contact.html" class="drawer-nav-link">Contact<i data-lucide="chevron-right"></i></a>
+      </nav>
+      <div class="drawer-footer">
+        <a href="quote.html" class="btn btn-primary btn-full"><i data-lucide="file-text"></i> Get Free Quote</a>
+        <a href="tel:+918218059678" class="btn btn-outline btn-full"><i data-lucide="phone-call"></i> Call Now</a>
+        <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="btn btn-whatsapp btn-full"><i data-lucide="message-circle"></i> WhatsApp Us</a>
       </div>
     </div>
   </div>
 
   <main>
-    <section style="background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%); color: var(--white); padding: 4rem 0; text-align: center;">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div class="breadcrumb"><a href="index.html">Home</a><i data-lucide="chevron-right"></i>Pricing</div>
+        <h1 class="page-hero-title">Transparent Pricing — No Hidden Charges</h1>
+        <p class="page-hero-sub">Honest, upfront pricing for all relocation services. Get your free detailed quote for exact costs.</p>
+      </div>
+    </section>
+
+    <!-- PRICING DISCLAIMER -->
+    <div style="background:var(--primary-light);border-bottom:1px solid var(--primary-border);padding:1rem 0;">
       <div class="container">
-        <span class="badge badge-orange">100% Transparent</span>
-        <h1 style="font-size: 2.75rem; font-weight: 900; margin-top: 0.5rem; color: var(--white);">Standard Relocation Rate Cards</h1>
-        <p style="color: var(--slate-300); max-width: 650px; margin: 0.75rem auto 0 auto; font-size: 1.05rem; line-height: 1.65;">
-          Clear, upfront pricing with zero hidden surcharges. All packages include 4-layer packaging, labor, vehicle freight, and loading/unloading.
+        <p style="text-align:center;font-family:var(--font-heading);font-size:0.875rem;font-weight:600;color:var(--primary-dark);">
+          <i data-lucide="info" style="width:15px;height:15px;display:inline;vertical-align:middle;"></i>
+          Prices shown are indicative starting ranges. Exact costs depend on distance, floors, lift availability, items, and packing requirements. <a href="quote.html" style="text-decoration:underline;color:var(--primary-dark);font-weight:700;">Get a free custom quote →</a>
         </p>
       </div>
-    </section>
+    </div>
 
-    <!-- Local Relocation Standard Rates -->
-    <section class="section">
+    <!-- HOUSEHOLD PRICING -->
+    <section class="section section-white">
       <div class="container">
-        <div class="section-title-wrap">
-          <span class="badge badge-emerald">Local Move Rates (Within Mumbai MMR)</span>
-          <h2 class="section-heading">Standard Local Moving Packages</h2>
-          <p class="section-desc">Covers Nalasopara, Palghar, Vasai, Virar, Mira-Bhayandar, Thane, Navi Mumbai, and Mumbai City.</p>
+        <div class="section-header reveal">
+          <div class="eyebrow"><i data-lucide="home"></i> Household Shifting</div>
+          <h2 class="section-title">Local &amp; Domestic Shifting Rates</h2>
+          <p class="section-sub">Starting price ranges for household shifting based on home size and distance.</p>
         </div>
-
-        <div class="packages-grid">
-          <!-- 1 RK / Room -->
-          <div class="package-card">
-            <div>
-              <h3 class="package-title">1 RK / Studio Shifting</h3>
-              <p class="package-tagline">Ideal for bachelors and students</p>
-              <div class="package-price-wrap">
-                <div class="price-local">₹3,500 – ₹5,500</div>
-                <div class="price-intercity">All-inclusive local shifting</div>
-              </div>
-              <div class="feature-list">
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>2-3 Trained Movers</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>Tata Ace / 10ft Closed Vehicle</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>Bubble wrap & corrugated boxes</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>Complete loading & unloading</span></div>
-              </div>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal">
+            <div class="pricing-name">1 BHK — Local</div>
+            <div class="pricing-price">₹3,000 <span>onwards</span></div>
+            <p class="pricing-desc">Same-city or nearby area shifting for a 1 BHK apartment.</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Full packing &amp; unpacking</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Loading &amp; unloading</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Transport (local)</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Same-day availability</div>
             </div>
-            <a href="quote.html?size=1+RK+/+Single+Room" class="btn btn-outline" style="width: 100%;">Book 1 RK Move</a>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
           </div>
-
-          <!-- 1 BHK -->
-          <div class="package-card">
-            <div>
-              <h3 class="package-title">1 BHK Apartment</h3>
-              <p class="package-tagline">Complete 1 bedroom house shifting</p>
-              <div class="package-price-wrap">
-                <div class="price-local">₹5,000 – ₹8,000</div>
-                <div class="price-intercity">All-inclusive local shifting</div>
-              </div>
-              <div class="feature-list">
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>3-4 Professional Movers</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>14ft Closed Container Truck</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>3-Layer bubble & stretch packing</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>Bed dismantling & reassembly</span></div>
-              </div>
+          <div class="pricing-card featured reveal reveal-d1">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-name">2 BHK — Local</div>
+            <div class="pricing-price">₹5,000 <span>onwards</span></div>
+            <p class="pricing-desc">Complete household shifting for a 2 BHK apartment within the city.</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Full packing &amp; unpacking</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Loading &amp; unloading</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Transport (local)</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Appliance handling</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Furniture disassembly</div>
             </div>
-            <a href="quote.html?size=1+BHK+Apartment" class="btn btn-outline" style="width: 100%;">Book 1 BHK Move</a>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
           </div>
-
-          <!-- 2 BHK (Popular) -->
-          <div class="package-card popular">
-            <span class="popular-ribbon">Most Popular</span>
-            <div>
-              <h3 class="package-title">2 BHK Family Relocation</h3>
-              <p class="package-tagline">Complete 2 bedroom family home</p>
-              <div class="package-price-wrap">
-                <div class="price-local" style="color: var(--primary);">₹8,000 – ₹13,000</div>
-                <div class="price-intercity">All-inclusive local shifting</div>
-              </div>
-              <div class="feature-list">
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>4-5 Expert Technicians</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>17ft / 19ft Weatherproof Container</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>4-Layer Multi-Guard Packaging</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>TV, Fridge & Wardrobe Care</span></div>
-              </div>
+          <div class="pricing-card reveal reveal-d2">
+            <div class="pricing-name">3 BHK+ — Local</div>
+            <div class="pricing-price">₹7,500 <span>onwards</span></div>
+            <p class="pricing-desc">Large household shifting for 3 BHK or larger homes.</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Everything in 2 BHK</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Extra manpower</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Multiple trips if needed</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Priority scheduling</div>
             </div>
-            <a href="quote.html?size=2+BHK+Family+Move" class="btn btn-primary" style="width: 100%;">Book 2 BHK Move →</a>
-          </div>
-
-          <!-- 3-4 BHK / Villa -->
-          <div class="package-card">
-            <div>
-              <h3 class="package-title">3-4 BHK / Luxury Villa</h3>
-              <p class="package-tagline">Large residences & premium estates</p>
-              <div class="package-price-wrap">
-                <div class="price-local">₹14,000 – ₹24,000</div>
-                <div class="price-intercity">All-inclusive local shifting</div>
-              </div>
-              <div class="feature-list">
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>6-8 Senior Moving Specialists</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>22ft / 24ft High-Cube Container</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>Custom wooden crating for glass & art</span></div>
-                <div class="feature-item"><i data-lucide="check-circle-2"></i><span>Complete room placement & unpacking</span></div>
-              </div>
-            </div>
-            <a href="quote.html?size=3-4+BHK+Luxury+Villa" class="btn btn-outline" style="width: 100%;">Book 3-4 BHK Move</a>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Popular Intercity Routes Table -->
-    <section class="section" style="background-color: var(--slate-50);">
+    <!-- INTERCITY PRICING -->
+    <section class="section section-light">
       <div class="container">
-        <div class="section-title-wrap">
-          <span class="badge badge-orange">Direct Highway Corridors</span>
-          <h2 class="section-heading">Intercity Route Price Matrix</h2>
-          <p class="section-desc">Indicative starting estimates for direct sealed container moves from Mumbai / Palghar.</p>
+        <div class="section-header reveal">
+          <div class="eyebrow"><i data-lucide="truck"></i> Intercity / Domestic</div>
+          <h2 class="section-title">Pan-India Relocation Rates</h2>
+          <p class="section-sub">Approximate starting costs for long-distance household moves.</p>
         </div>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal">
+            <div class="pricing-name">1 BHK — Intercity</div>
+            <div class="pricing-price">₹8,000 <span>onwards</span></div>
+            <p class="pricing-desc">1 BHK household shifting across cities (e.g. Nalasopara to Pune).</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Packing &amp; unpacking</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Loading &amp; unloading</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Door-to-door delivery</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Tracking updates</div>
+            </div>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
+          </div>
+          <div class="pricing-card featured reveal reveal-d1">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-name">2 BHK — Intercity</div>
+            <div class="pricing-price">₹14,000 <span>onwards</span></div>
+            <p class="pricing-desc">Complete 2 BHK relocation across Maharashtra or Pan-India.</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Full packing service</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Dedicated vehicle</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> GPS-tracked transport</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> On-time delivery guarantee</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Fragile item protection</div>
+            </div>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
+          </div>
+          <div class="pricing-card reveal reveal-d2">
+            <div class="pricing-name">3 BHK+ — Intercity</div>
+            <div class="pricing-price">₹22,000 <span>onwards</span></div>
+            <p class="pricing-desc">Large-scale long-distance relocation with complete packing and safety.</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Everything in 2 BHK</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Multiple vehicles</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Furniture reassembly</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Premium packing materials</div>
+            </div>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="comparison-wrap">
-          <table class="comparison-table">
+    <!-- VEHICLE TRANSPORT PRICING -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow"><i data-lucide="car"></i> Vehicle Transport</div>
+          <h2 class="section-title">Car &amp; Bike Transport Rates</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div class="pricing-card reveal">
+            <div class="service-icon" style="width:56px;height:56px;border-radius:var(--r-sm);background:var(--primary-light);border:1px solid var(--primary-border);display:flex;align-items:center;justify-content:center;color:var(--primary);margin-bottom:1rem;"><i data-lucide="car"></i></div>
+            <div class="pricing-name">Car Transportation</div>
+            <div class="pricing-price">₹6,000 <span>onwards</span></div>
+            <p class="pricing-desc">Safe car carrier transport for all vehicle types — hatchbacks, sedans, SUVs and luxury cars.</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Enclosed / Open carrier</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> GPS tracking</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Door-to-door delivery</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> All-India coverage</div>
+            </div>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
+          </div>
+          <div class="pricing-card reveal reveal-d1">
+            <div class="service-icon" style="width:56px;height:56px;border-radius:var(--r-sm);background:var(--primary-light);border:1px solid var(--primary-border);display:flex;align-items:center;justify-content:center;color:var(--primary);margin-bottom:1rem;"><i data-lucide="bike"></i></div>
+            <div class="pricing-name">Bike Transportation</div>
+            <div class="pricing-price">₹2,500 <span>onwards</span></div>
+            <p class="pricing-desc">Two-wheeler transport using padded ramps and secure tie-downs ensuring scratch-free delivery.</p>
+            <div class="pricing-feats">
+              <div class="pricing-feat"><i data-lucide="check"></i> Padded ramps &amp; tie-downs</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> GPS tracking</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> Scooters, bikes, sports bikes</div>
+              <div class="pricing-feat"><i data-lucide="check"></i> All-India coverage</div>
+            </div>
+            <a href="quote.html" class="btn btn-primary btn-full">Get Exact Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow"><i data-lucide="table"></i> Comparison</div>
+          <h2 class="section-title">What's Included in Each Plan</h2>
+        </div>
+        <div class="cmp-wrap reveal">
+          <table class="cmp-table">
             <thead>
               <tr>
-                <th>Route Corridor</th>
-                <th>Transit Time</th>
-                <th>1 BHK Moving</th>
-                <th>2 BHK Moving</th>
-                <th>3 BHK Moving</th>
-                <th>Bike / Car Transport</th>
+                <th>Feature</th>
+                <th>Loading Only</th>
+                <th class="hl">Full Packing</th>
+                <th>Premium</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>Mumbai / Nalasopara → Pune</strong></td>
-                <td>24 Hours</td>
-                <td>₹7,500 – ₹10,500</td>
-                <td>₹11,500 – ₹16,000</td>
-                <td>₹17,000 – ₹24,000</td>
-                <td>Bike: ₹2,800 | Car: ₹6,500</td>
-              </tr>
-              <tr>
-                <td><strong>Mumbai / Nalasopara → Nashik</strong></td>
-                <td>24 Hours</td>
-                <td>₹7,000 – ₹10,000</td>
-                <td>₹11,000 – ₹15,500</td>
-                <td>₹16,500 – ₹23,000</td>
-                <td>Bike: ₹2,500 | Car: ₹6,000</td>
-              </tr>
-              <tr>
-                <td><strong>Mumbai / Nalasopara → Surat / Vapi</strong></td>
-                <td>24 – 36 Hours</td>
-                <td>₹9,500 – ₹13,000</td>
-                <td>₹14,000 – ₹19,500</td>
-                <td>₹20,000 – ₹28,000</td>
-                <td>Bike: ₹3,200 | Car: ₹7,800</td>
-              </tr>
-              <tr>
-                <td><strong>Mumbai / Nalasopara → Ahmedabad</strong></td>
-                <td>2 – 3 Days</td>
-                <td>₹14,000 – ₹18,500</td>
-                <td>₹20,000 – ₹27,000</td>
-                <td>₹28,000 – ₹38,000</td>
-                <td>Bike: ₹4,500 | Car: ₹10,500</td>
-              </tr>
-              <tr>
-                <td><strong>Mumbai / Nalasopara → Bengaluru</strong></td>
-                <td>3 – 4 Days</td>
-                <td>₹17,500 – ₹24,000</td>
-                <td>₹25,000 – ₹35,000</td>
-                <td>₹36,000 – ₹48,000</td>
-                <td>Bike: ₹5,500 | Car: ₹13,500</td>
-              </tr>
-              <tr>
-                <td><strong>Mumbai / Nalasopara → Delhi NCR</strong></td>
-                <td>4 – 5 Days</td>
-                <td>₹21,000 – ₹28,000</td>
-                <td>₹29,000 – ₹40,000</td>
-                <td>₹42,000 – ₹58,000</td>
-                <td>Bike: ₹6,500 | Car: ₹15,500</td>
-              </tr>
+              <tr><td>Professional Loading &amp; Unloading</td><td>✅</td><td class="hl">✅</td><td>✅</td></tr>
+              <tr><td>Packing Materials (Boxes, Tape)</td><td>❌</td><td class="hl">✅</td><td>✅</td></tr>
+              <tr><td>Bubble Wrap &amp; Fragile Packing</td><td>❌</td><td class="hl">✅</td><td>✅</td></tr>
+              <tr><td>Furniture Disassembly &amp; Reassembly</td><td>❌</td><td class="hl">On Request</td><td>✅</td></tr>
+              <tr><td>Appliance Handling</td><td>Basic</td><td class="hl">✅</td><td>✅</td></tr>
+              <tr><td>GPS Fleet Tracking</td><td>✅</td><td class="hl">✅</td><td>✅</td></tr>
+              <tr><td>On-Time Delivery Commitment</td><td>✅</td><td class="hl">✅</td><td>✅</td></tr>
+              <tr><td>Dedicated Customer Support</td><td>Basic</td><td class="hl">✅</td><td>Priority</td></tr>
+              <tr><td>Unpacking Service</td><td>❌</td><td class="hl">On Request</td><td>✅</td></tr>
+              <tr><td>Storage (if needed)</td><td>❌</td><td class="hl">On Request</td><td>✅</td></tr>
             </tbody>
           </table>
         </div>
+      </div>
+    </section>
 
-        <div style="text-align: center; margin-top: 2.5rem;">
-          <a href="quote.html" class="btn btn-primary btn-lg">
-            Request Official Written Quote for Your Route →
-          </a>
+    <!-- WHAT AFFECTS PRICING -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow"><i data-lucide="help-circle"></i> Pricing Factors</div>
+          <h2 class="section-title">What Affects Your Moving Cost?</h2>
+          <p class="section-sub">Moving costs depend on several factors. Here's what we consider when calculating your quote.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="service-icon"><i data-lucide="ruler"></i></div>
+            <div class="service-name">Distance</div>
+            <p class="service-desc">Local moves cost less than long-distance intercity relocations. The farther the destination, the higher the transport cost.</p>
+          </div>
+          <div class="service-card reveal reveal-d1">
+            <div class="service-icon"><i data-lucide="home"></i></div>
+            <div class="service-name">Home Size</div>
+            <p class="service-desc">1 BHK, 2 BHK, 3 BHK or commercial — the number of rooms and items directly affects labour and transport costs.</p>
+          </div>
+          <div class="service-card reveal reveal-d2">
+            <div class="service-icon"><i data-lucide="layers"></i></div>
+            <div class="service-name">Floor &amp; Lift Access</div>
+            <p class="service-desc">Higher floors without a lift require extra manpower and time, which affects the total price slightly.</p>
+          </div>
+          <div class="service-card reveal">
+            <div class="service-icon"><i data-lucide="package"></i></div>
+            <div class="service-name">Packing Level</div>
+            <p class="service-desc">Full professional packing with premium materials costs more than transport-only or loading-only services.</p>
+          </div>
+          <div class="service-card reveal reveal-d1">
+            <div class="service-icon"><i data-lucide="calendar"></i></div>
+            <div class="service-name">Moving Date</div>
+            <p class="service-desc">Peak season (Oct–Feb) and last-minute bookings may have slightly higher rates. Book in advance for best pricing.</p>
+          </div>
+          <div class="service-card reveal reveal-d2">
+            <div class="service-icon"><i data-lucide="sparkles"></i></div>
+            <div class="service-name">Special Items</div>
+            <p class="service-desc">Pianos, large aquariums, antiques, or heavy gym equipment require special handling and may add to cost.</p>
+          </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- Sticky Mobile Bottom Bar -->
-  <div class="mobile-bottom-bar">
-    <a href="tel:+918218059678" class="mobile-bottom-btn mobile-btn-call">
-      <i data-lucide="phone"></i>
-      <span>Call Desk</span>
-    </a>
-    <a href="https://wa.me/918218059678?text=Hello%20Shantanu%20Packers,%20I%20need%20a%20moving%20quote." target="_blank" rel="noopener noreferrer" class="mobile-bottom-btn mobile-btn-wa">
-      <i data-lucide="message-circle"></i>
-      <span>WhatsApp</span>
-    </a>
-    <a href="quote.html" class="mobile-bottom-btn mobile-btn-quote">
-      <i data-lucide="calendar-check"></i>
-      <span>Book Move</span>
-    </a>
-  </div>
-
-  <!-- Desktop Floating Action Buttons -->
-  <div class="floating-actions">
-    <a href="https://wa.me/918218059678?text=Hello%20Shantanu%20Packers,%20please%20send%20me%20a%20relocation%20quote." class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-      <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
-    </a>
-    <a href="tel:+918218059678" class="float-btn float-call" aria-label="Call Shantanu Packers">
-      <i data-lucide="phone" style="width: 26px; height: 26px;"></i>
-    </a>
-  </div>
-
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="brand-logo" style="margin-bottom: 1rem;">
-            <img src="assets/images/logo.png" alt="Shantanu Packers and Movers" class="brand-logo-img-footer">
-            <div class="logo-text footer-logo-text">
-              <span class="logo-title" style="color: var(--white); font-size: 1.2rem;">SHANTANU</span>
-              <span class="logo-subtitle" style="color: #fb923c; font-size: 0.65rem;">PACKERS &amp; MOVERS</span>
-            </div>
-          </div>
-          <p style="font-size: 0.8125rem; line-height: 1.6; color: var(--slate-400);">
-            Govt. Registered MSME Enterprise (<strong>UDYAM-MH-17-0244739</strong>). Delivering seamless residential, corporate, and vehicle relocation with 4-layer packaging standards across Maharashtra & Pan-India.
-          </p>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Quick Navigation</h4>
-          <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Shantanu Movers</a>
-            <a href="services.html">Relocation Services</a>
-            <a href="gallery.html">Moving Photo Gallery</a>
-            <a href="pricing.html">Pricing & Rate Cards</a>
-            <a href="quote.html">Book Move / Get Quote</a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Our Services</h4>
-          <div class="footer-links">
-            <a href="services.html#household-shifting">Household Shifting</a>
-            <a href="services.html#office-relocation">Office Relocation</a>
-            <a href="services.html#transportation-service">Transportation Service</a>
-            <a href="services.html#packing-and-moving">Packing & Moving</a>
-            <a href="services.html#loading-unloading">Loading & Unloading</a>
-            <a href="services.html#domestic-relocation">Pan-India Domestic Moves</a>
-            <a href="services.html#vehicle-transportation">Car & Bike Carrier</a>
-            <a href="services.html#warehousing-storage">Warehousing & Storage</a>
-            <a href="services.html#international-relocation">International Relocation</a>
-            <a href="services.html#transit-insurance">Goods Transit Insurance</a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Headquarters & Contact</h4>
-          <div style="font-size: 0.8125rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.75rem;">
-            <div>
-              <strong style="color: var(--white);">Head Office:</strong><br>
-              S/N 01, Bilal Pada, PALGHAR Road, Nalasopara East - 401209, Maharashtra, India.
-            </div>
-            <div>
-              <strong style="color: var(--white);">Direct Helplines:</strong><br>
-              <a href="tel:+918218059678" style="color: #fb923c;">+91 8218059678</a> / 
-              <a href="tel:+919371482180" style="color: #fb923c;">+91 9371482180</a>
-            </div>
-            <div>
-              <strong style="color: var(--white);">Official Email:</strong><br>
-              <a href="mailto:shantanupackers@gmail.com" style="color: var(--slate-300);">shantanupackers@gmail.com</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>
-          &copy; 2026 Shantanu Packers and Movers. All Rights Reserved. Govt. MSME Reg: UDYAM-MH-17-0244739.
-        </div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="privacy-policy.html" style="color: var(--slate-400);">Privacy Policy</a>
-          <a href="terms-and-conditions.html" style="color: var(--slate-400);">Terms & Conditions</a>
-          <a href="contact.html" style="color: var(--slate-400);">Contact Us</a>
+    <!-- CTA -->
+    <div class="cta-strip">
+      <div class="container">
+        <h2 class="cta-strip-title reveal">Get Your Exact Quote — Free &amp; No Obligation!</h2>
+        <p class="cta-strip-sub reveal">Tell us your move details and we'll provide a precise, binding quote within 60 minutes. No surprises.</p>
+        <div class="cta-strip-btns reveal">
+          <a href="quote.html" class="btn btn-secondary btn-lg"><i data-lucide="file-text"></i> Get Free Quote</a>
+          <a href="https://wa.me/918218059678?text=Hi!%20I%20need%20a%20quote." target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg"><i data-lucide="message-circle"></i> WhatsApp Now</a>
         </div>
       </div>
     </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><img src="assets/images/logo.png" alt="" class="footer-logo-img"><div style="display:flex;flex-direction:column;line-height:1;margin-top:0.75rem;"><span class="footer-logo-name">SHANTANU</span><span class="footer-logo-tag">Packers &amp; Movers</span></div><p class="footer-desc">MSME-registered professional relocation experts since 2019.</p><div class="footer-msme"><i data-lucide="shield-check"></i> UDYAM-MH-17-0244739</div></div>
+        <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About Us</a><a href="services.html" class="footer-link">Services</a><a href="gallery.html" class="footer-link">Gallery</a><a href="pricing.html" class="footer-link">Pricing</a><a href="contact.html" class="footer-link">Contact</a></div></div>
+        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html" class="footer-link">Household Shifting</a><a href="services.html" class="footer-link">Office Relocation</a><a href="services.html" class="footer-link">Car Transportation</a><a href="services.html" class="footer-link">Bike Transportation</a></div></div>
+        <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><i data-lucide="map-pin"></i><span>Nalasopara East, MH - 401209</span></div><div class="footer-contact-item"><i data-lucide="phone-call"></i><span><a href="tel:+918218059678">+91 8218059678</a></span></div><div class="footer-contact-item"><i data-lucide="mail"></i><span><a href="mailto:shantanupackers@gmail.com">shantanupackers@gmail.com</a></span></div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">&copy; 2024 Shantanu Packers and Movers. All rights reserved.</div><div class="footer-bottom-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-and-conditions.html">Terms &amp; Conditions</a></div></div>
+    </div>
   </footer>
 
+  <div class="mobile-bottom-bar"><div class="mobile-bar-grid"><a href="tel:+918218059678" class="mbb-btn mbb-call"><i data-lucide="phone-call"></i>Call Now</a><a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="mbb-btn mbb-wa"><i data-lucide="message-circle"></i>WhatsApp</a><a href="quote.html" class="mbb-btn mbb-quote"><i data-lucide="file-text"></i>Get Free Quote</a></div></div>
+  <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
 </body>
 </html>

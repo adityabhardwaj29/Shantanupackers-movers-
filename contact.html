@@ -1,17 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | Shantanu Packers and Movers</title>
-  <meta name="description" content="Contact Shantanu Packers and Movers. Head office at Bilal Pada, Palghar Road, Nalasopara East. 24/7 Helplines: +91 8218059678, +91 9371482180.">
-  <link rel="canonical" href="https://shantanupackers.com/contact.html">
+  <title>Contact Us | Shantanu Packers and Movers — Call, WhatsApp or Email</title>
+  <meta name="description" content="Contact Shantanu Packers and Movers — call +91 8218059678, WhatsApp, or email shantanupackers@gmail.com. Based in Nalasopara East, Maharashtra. Available 24/7.">
+  <link rel="canonical" href="https://shantanupackers-movers-nine.vercel.app/contact.html">
+  <meta name="theme-color" content="#F97316">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/ui-enhancements.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
@@ -19,304 +18,268 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-left">
-        <div class="top-bar-item highlight">
-          <i data-lucide="shield-check"></i>
-          <span>Govt. MSME Registered: <strong>UDYAM-MH-17-0244739</strong></span>
-        </div>
+        <div class="top-bar-item accent"><i data-lucide="shield-check"></i><span>MSME: UDYAM-MH-17-0244739</span></div>
+        <div class="top-bar-item"><i data-lucide="clock"></i><span>Available 24/7</span></div>
       </div>
       <div class="top-bar-right">
-        <a href="tel:+918218059678" class="top-bar-phone">
-          <i data-lucide="phone-call"></i>
-          <span>+91 8218059678</span>
-        </a>
+        <a href="tel:+918218059678" class="top-bar-phone"><i data-lucide="phone-call"></i><span>+91 8218059678</span></a>
+        <a href="tel:+919371482180" class="top-bar-phone"><i data-lucide="phone"></i><span>+91 9371482180</span></a>
       </div>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo" title="Shantanu Packers and Movers">
-        <img src="assets/images/logo.png" alt="Shantanu Packers and Movers Official Logo" class="brand-logo-img">
-        <div class="logo-text">
-          <span class="logo-title">SHANTANU</span>
-          <span class="logo-subtitle">PACKERS &amp; MOVERS</span>
-        </div>
-      </a>
-
-      <nav class="nav-links">
+      <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="Shantanu Packers and Movers Logo" class="brand-logo-img"><div class="logo-text"><span class="logo-name">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
+      <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About Us</a>
         <a href="services.html" class="nav-link">Services</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="pricing.html" class="nav-link">Rates & Pricing</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
         <a href="contact.html" class="nav-link active">Contact</a>
       </nav>
-
       <div class="nav-actions">
-        <a href="quote.html" class="btn btn-primary btn-sm">
-          <i data-lucide="calendar-check"></i>
-          <span>Book a Move</span>
-        </a>
-        <button type="button" class="hamburger-btn" id="btn-hamburger" aria-label="Open Menu"><i data-lucide="menu"></i></button>
+        <a href="quote.html" class="btn btn-primary btn-sm"><i data-lucide="file-text"></i> Get Free Quote</a>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Drawer -->
-  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
-    <div class="mobile-nav-content">
-      <div class="mobile-nav-header">
-        <div class="brand-logo">
-          <img src="assets/images/logo.png" alt="Shantanu Packers and Movers" class="brand-logo-img-sm">
-          <div class="logo-text">
-            <span class="logo-title">SHANTANU</span>
-            <span class="logo-subtitle">PACKERS &amp; MOVERS</span>
-          </div>
-        </div>
-        <button type="button" class="btn-outline btn-sm" id="btn-close-drawer" aria-label="Close Navigation" title="Close Navigation">
-          <i data-lucide="x"></i>
-        </button>
+  <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true">
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="" class="brand-logo-img" style="height:36px"><div class="logo-text"><span class="logo-name" style="font-size:1rem">SHANTANU</span><span class="logo-tagline">Packers &amp; Movers</span></div></a>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close"><i data-lucide="x"></i></button>
       </div>
-      <div class="mobile-nav-links">
-        <a href="index.html" class="mobile-nav-link">Home <i data-lucide="chevron-right"></i></a>
-        <a href="about.html" class="mobile-nav-link">About Us <i data-lucide="chevron-right"></i></a>
-        <a href="services.html" class="mobile-nav-link">Relocation Services <i data-lucide="chevron-right"></i></a>
-        <a href="gallery.html" class="mobile-nav-link">Moving Gallery <i data-lucide="chevron-right"></i></a>
-        <a href="pricing.html" class="mobile-nav-link">Rates & Pricing <i data-lucide="chevron-right"></i></a>
-        <a href="contact.html" class="mobile-nav-link active">Contact <i data-lucide="chevron-right"></i></a>
-        <a href="terms-and-conditions.html" class="mobile-nav-link">Terms & Conditions <i data-lucide="chevron-right"></i></a>
-        <a href="privacy-policy.html" class="mobile-nav-link">Privacy Policy <i data-lucide="chevron-right"></i></a>
-      </div>
-      <div class="drawer-cta-block">
-        <a href="quote.html" class="btn btn-primary" style="width: 100%;">
-          Get Free Binding Quote
-        </a>
+      <nav class="drawer-body">
+        <a href="index.html" class="drawer-nav-link">Home<i data-lucide="chevron-right"></i></a>
+        <a href="about.html" class="drawer-nav-link">About Us<i data-lucide="chevron-right"></i></a>
+        <a href="services.html" class="drawer-nav-link">Services<i data-lucide="chevron-right"></i></a>
+        <a href="gallery.html" class="drawer-nav-link">Gallery<i data-lucide="chevron-right"></i></a>
+        <a href="pricing.html" class="drawer-nav-link">Pricing<i data-lucide="chevron-right"></i></a>
+        <a href="contact.html" class="drawer-nav-link active">Contact<i data-lucide="chevron-right"></i></a>
+      </nav>
+      <div class="drawer-footer">
+        <a href="quote.html" class="btn btn-primary btn-full"><i data-lucide="file-text"></i> Get Free Quote</a>
+        <a href="tel:+918218059678" class="btn btn-outline btn-full"><i data-lucide="phone-call"></i> Call Now</a>
+        <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="btn btn-whatsapp btn-full"><i data-lucide="message-circle"></i> WhatsApp Us</a>
       </div>
     </div>
   </div>
 
   <main>
-    <section style="background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%); color: var(--white); padding: 3.5rem 0; text-align: center;">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div class="breadcrumb"><a href="index.html">Home</a><i data-lucide="chevron-right"></i>Contact Us</div>
+        <h1 class="page-hero-title">Get in Touch with Us</h1>
+        <p class="page-hero-sub">Call, WhatsApp or email us — our team is available 24/7 to answer your queries and provide a free quote.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section section-white">
       <div class="container">
-        <span class="badge badge-orange">24/7 Dispatch Desk</span>
-        <h1 style="font-size: 2.5rem; font-weight: 900; margin-top: 0.5rem; color: var(--white);">Contact Shantanu Packers and Movers</h1>
-        <p style="color: var(--slate-300); max-width: 600px; margin: 0.5rem auto 0 auto; font-size: 1rem;">
-          Visit our registered headquarters in Nalasopara East or reach out via phone, email, and WhatsApp.
+        <div class="contact-wrap">
+          <!-- Info Card -->
+          <div class="contact-info-card reveal">
+            <h2 style="font-family:var(--font-heading);font-size:1.375rem;font-weight:800;color:var(--white);margin-bottom:1.5rem;">Contact Information</h2>
+
+            <div class="ci-item">
+              <div class="ci-icon"><i data-lucide="map-pin"></i></div>
+              <div>
+                <div class="ci-label">Our Office</div>
+                <div class="ci-value">
+                  S/N 01, Bilal Pada, PALGHAR Road,<br>
+                  Nalasopara East,<br>
+                  Maharashtra — 401209
+                </div>
+              </div>
+            </div>
+
+            <div class="ci-item">
+              <div class="ci-icon"><i data-lucide="phone-call"></i></div>
+              <div>
+                <div class="ci-label">Phone Numbers</div>
+                <div class="ci-value">
+                  <a href="tel:+918218059678">+91 8218059678</a><br>
+                  <a href="tel:+919371482180">+91 9371482180</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="ci-item">
+              <div class="ci-icon"><i data-lucide="message-circle"></i></div>
+              <div>
+                <div class="ci-label">WhatsApp</div>
+                <div class="ci-value">
+                  <a href="https://wa.me/918218059678?text=Hi!%20I%20need%20a%20quote." target="_blank" rel="noopener">+91 8218059678 (WhatsApp)</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="ci-item">
+              <div class="ci-icon"><i data-lucide="mail"></i></div>
+              <div>
+                <div class="ci-label">Email Address</div>
+                <div class="ci-value">
+                  <a href="mailto:shantanupackers@gmail.com">shantanupackers@gmail.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="ci-item">
+              <div class="ci-icon"><i data-lucide="clock"></i></div>
+              <div>
+                <div class="ci-label">Working Hours</div>
+                <div class="ci-value">Monday – Sunday<br><strong style="color:var(--white);">24 Hours / 7 Days a Week</strong></div>
+              </div>
+            </div>
+
+            <div class="ci-item">
+              <div class="ci-icon"><i data-lucide="shield-check"></i></div>
+              <div>
+                <div class="ci-label">MSME Registration</div>
+                <div class="ci-value" style="font-weight:700;font-family:var(--font-heading);color:#FDBA74;">UDYAM-MH-17-0244739</div>
+              </div>
+            </div>
+
+            <div class="contact-action-btns">
+              <a href="tel:+918218059678" class="btn btn-primary btn-sm"><i data-lucide="phone-call"></i> Call Now</a>
+              <a href="https://wa.me/918218059678?text=Hi!%20I%20need%20a%20quote." target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm"><i data-lucide="message-circle"></i> WhatsApp</a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="reveal reveal-d1">
+            <h2 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;color:var(--dark-900);margin-bottom:0.375rem;">Send Us a Message</h2>
+            <p style="color:var(--slate-500);font-size:0.9rem;margin-bottom:1.75rem;">Fill out the form and we'll get back to you within the hour.</p>
+
+            <div id="contact-success" style="display:none;background:var(--success-light);border:1px solid var(--success-border);border-radius:var(--r-md);padding:1.5rem;text-align:center;margin-bottom:1.5rem;">
+              <i data-lucide="check-circle-2" style="width:32px;height:32px;color:var(--success);margin:0 auto 0.5rem;"></i>
+              <div style="font-family:var(--font-heading);font-weight:700;color:var(--dark-900);">Message Sent Successfully!</div>
+              <p style="font-size:0.875rem;color:var(--slate-600);margin-top:0.25rem;">We'll get back to you shortly.</p>
+            </div>
+
+            <form id="contact-form" novalidate>
+              <div class="form-grid-2" style="margin-bottom:1rem;">
+                <div class="form-group">
+                  <label class="form-label" for="ct-name">Full Name <span class="req">*</span></label>
+                  <input type="text" id="ct-name" name="name" class="form-control" placeholder="Your full name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ct-phone">Mobile Number <span class="req">*</span></label>
+                  <input type="tel" id="ct-phone" name="phone" class="form-control" placeholder="+91 XXXXXXXXXX" required autocomplete="tel">
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom:1rem;">
+                <label class="form-label" for="ct-email">Email Address</label>
+                <input type="email" id="ct-email" name="email" class="form-control" placeholder="your@email.com" autocomplete="email">
+              </div>
+              <div class="form-group" style="margin-bottom:1rem;">
+                <label class="form-label" for="ct-subject">Subject <span class="req">*</span></label>
+                <select id="ct-subject" name="subject" class="form-control" required>
+                  <option value="">Select a topic...</option>
+                  <option>Get a Quote</option>
+                  <option>Enquiry about Services</option>
+                  <option>Track My Move</option>
+                  <option>Complaint / Feedback</option>
+                  <option>Partnership Enquiry</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:1.5rem;">
+                <label class="form-label" for="ct-message">Message <span class="req">*</span></label>
+                <textarea id="ct-message" name="message" class="form-control" placeholder="Tell us how we can help you..." required rows="5"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full" id="contact-submit-btn">
+                <i data-lucide="send"></i> Send Message
+              </button>
+              <p style="text-align:center;font-size:0.75rem;color:var(--slate-400);margin-top:0.875rem;">🔒 Your information is private and will not be shared.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="section section-light" style="padding:3rem 0;">
+      <div class="container">
+        <div class="section-header reveal" style="margin-bottom:1.5rem;">
+          <div class="eyebrow"><i data-lucide="map"></i> Our Location</div>
+          <h2 class="section-title" style="font-size:1.75rem;">Find Us in Nalasopara East</h2>
+        </div>
+        <div style="border-radius:var(--r-xl);overflow:hidden;height:380px;border:2px solid var(--slate-200);box-shadow:var(--shadow-md);" class="reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3759.8!2d72.848!3d19.4264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzM1LjAiTiA3MsKwNTAnNTMuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+            width="100%"
+            height="380"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Shantanu Packers and Movers location in Nalasopara East, Maharashtra">
+          </iframe>
+        </div>
+        <p style="text-align:center;color:var(--slate-500);font-size:0.875rem;margin-top:1rem;">
+          <i data-lucide="map-pin" style="width:14px;height:14px;display:inline;vertical-align:middle;color:var(--primary);"></i>
+          S/N 01, Bilal Pada, PALGHAR Road, Nalasopara East, Maharashtra — 401209
         </p>
       </div>
     </section>
 
-    <section class="section">
+    <!-- CTA -->
+    <div class="cta-strip">
       <div class="container">
-        <div style="display: grid; grid-template-columns: 1fr; gap: 2.5rem;" class="form-row-2">
-          
-          <!-- Office Details Card -->
-          <div style="background-color: var(--white); border: 1.5px solid var(--slate-200); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
-            <span class="badge badge-emerald">Registered Headquarters</span>
-            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--slate-900); margin-top: 0.5rem;">
-              Shantanu Packers and Movers
-            </h2>
-            <p style="font-size: 0.8125rem; color: var(--slate-500); margin-top: 0.25rem;">
-              Govt. MSME Registration: <strong>UDYAM-MH-17-0244739</strong>
-            </p>
-
-            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem;">
-              <div style="display: flex; gap: 0.75rem;">
-                <div style="color: var(--primary);"><i data-lucide="map-pin" style="width: 22px; height: 22px;"></i></div>
-                <div>
-                  <strong style="color: var(--slate-900); font-size: 0.9rem;">Head Office Address:</strong>
-                  <p style="font-size: 0.875rem; color: var(--slate-600); margin-top: 0.15rem; line-height: 1.5;">
-                    S/N 01, Bilal Pada, PALGHAR Road, Nalasopara East - 401209, Maharashtra, India.
-                  </p>
-                </div>
-              </div>
-
-              <div style="display: flex; gap: 0.75rem;">
-                <div style="color: var(--primary);"><i data-lucide="phone" style="width: 22px; height: 22px;"></i></div>
-                <div>
-                  <strong style="color: var(--slate-900); font-size: 0.9rem;">Direct Helplines (24/7):</strong>
-                  <p style="font-size: 0.875rem; margin-top: 0.15rem;">
-                    <a href="tel:+918218059678" style="color: var(--primary); font-weight: 700;">+91 8218059678</a> &bull; 
-                    <a href="tel:+919371482180" style="color: var(--primary); font-weight: 700;">+91 9371482180</a>
-                  </p>
-                </div>
-              </div>
-
-              <div style="display: flex; gap: 0.75rem;">
-                <div style="color: var(--primary);"><i data-lucide="mail" style="width: 22px; height: 22px;"></i></div>
-                <div>
-                  <strong style="color: var(--slate-900); font-size: 0.9rem;">Email Address:</strong>
-                  <p style="font-size: 0.875rem; color: var(--slate-600); margin-top: 0.15rem;">
-                    <a href="mailto:shantanupackers@gmail.com" style="color: var(--slate-700);">shantanupackers@gmail.com</a>
-                  </p>
-                </div>
-              </div>
-
-              <div style="display: flex; gap: 0.75rem;">
-                <div style="color: var(--primary);"><i data-lucide="clock" style="width: 22px; height: 22px;"></i></div>
-                <div>
-                  <strong style="color: var(--slate-900); font-size: 0.9rem;">Operational Hours:</strong>
-                  <p style="font-size: 0.875rem; color: var(--slate-600); margin-top: 0.15rem;">
-                    24 Hours / 7 Days a Week (Emergency Night Dispatch Available)
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-              <a href="https://wa.me/918218059678?text=Hello%20Shantanu%20Packers,%20I%20want%20to%20inquire%20about%20a%20move." class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" style="flex: 1;">
-                <i data-lucide="message-circle"></i>
-                <span>WhatsApp Desk</span>
-              </a>
-              <a href="tel:+918218059678" class="btn btn-primary" style="flex: 1;">
-                <i data-lucide="phone"></i>
-                <span>Call Directly</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Quick Message Box -->
-          <div style="background-color: var(--white); border: 1.5px solid var(--slate-200); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
-            <span class="badge badge-orange">Send Direct Inquiry</span>
-            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-top: 0.5rem; margin-bottom: 1.25rem;">
-              Message Our Operations Lead
-            </h3>
-
-            <form onsubmit="event.preventDefault(); const n=document.getElementById('msg-name').value; const p=document.getElementById('msg-phone').value; const m=document.getElementById('msg-text').value; window.open('https://wa.me/918218059678?text=' + encodeURIComponent('Direct Inquiry from ' + n + ' (' + p + '):\n\n' + m), '_blank');">
-              <div class="form-group">
-                <label class="form-label" for="msg-name">Your Full Name</label>
-                <input type="text" class="form-control" id="msg-name" placeholder="e.g. Anand Sharma" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="msg-phone">10-Digit Mobile Phone</label>
-                <input type="tel" class="form-control" id="msg-phone" placeholder="e.g. 9876543210" maxlength="10" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="msg-text">How Can We Help You?</label>
-                <textarea class="form-control" id="msg-text" rows="3" placeholder="Tell us your origin, destination, and moving date." required></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
-                Send WhatsApp Inquiry to Dispatch Team →
-              </button>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Sticky Mobile Bottom Bar -->
-  <div class="mobile-bottom-bar">
-    <a href="tel:+918218059678" class="mobile-bottom-btn mobile-btn-call">
-      <i data-lucide="phone"></i>
-      <span>Call Desk</span>
-    </a>
-    <a href="https://wa.me/918218059678?text=Hello%20Shantanu%20Packers,%20I%20need%20a%20moving%20quote." target="_blank" rel="noopener noreferrer" class="mobile-bottom-btn mobile-btn-wa">
-      <i data-lucide="message-circle"></i>
-      <span>WhatsApp</span>
-    </a>
-    <a href="quote.html" class="mobile-bottom-btn mobile-btn-quote">
-      <i data-lucide="calendar-check"></i>
-      <span>Book Move</span>
-    </a>
-  </div>
-
-  <!-- Desktop Floating Action Buttons -->
-  <div class="floating-actions">
-    <a href="https://wa.me/918218059678?text=Hello%20Shantanu%20Packers,%20please%20send%20me%20a%20relocation%20quote." class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-      <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
-    </a>
-    <a href="tel:+918218059678" class="float-btn float-call" aria-label="Call Shantanu Packers">
-      <i data-lucide="phone" style="width: 26px; height: 26px;"></i>
-    </a>
-  </div>
-
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="brand-logo" style="margin-bottom: 1rem;">
-            <img src="assets/images/logo.png" alt="Shantanu Packers and Movers" class="brand-logo-img-footer">
-            <div class="logo-text footer-logo-text">
-              <span class="logo-title" style="color: var(--white); font-size: 1.2rem;">SHANTANU</span>
-              <span class="logo-subtitle" style="color: #fb923c; font-size: 0.65rem;">PACKERS &amp; MOVERS</span>
-            </div>
-          </div>
-          <p style="font-size: 0.8125rem; line-height: 1.6; color: var(--slate-400);">
-            Govt. Registered MSME Enterprise (<strong>UDYAM-MH-17-0244739</strong>). Delivering seamless residential, corporate, and vehicle relocation with 4-layer packaging standards across Maharashtra & Pan-India.
-          </p>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Quick Navigation</h4>
-          <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Shantanu Movers</a>
-            <a href="services.html">Relocation Services</a>
-            <a href="gallery.html">Moving Photo Gallery</a>
-            <a href="pricing.html">Pricing & Rate Cards</a>
-            <a href="quote.html">Book Move / Get Quote</a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Our Services</h4>
-          <div class="footer-links">
-            <a href="services.html#household-shifting">Household Shifting</a>
-            <a href="services.html#office-relocation">Office Relocation</a>
-            <a href="services.html#transportation-service">Transportation Service</a>
-            <a href="services.html#packing-and-moving">Packing & Moving</a>
-            <a href="services.html#loading-unloading">Loading & Unloading</a>
-            <a href="services.html#domestic-relocation">Pan-India Domestic Moves</a>
-            <a href="services.html#vehicle-transportation">Car & Bike Carrier</a>
-            <a href="services.html#warehousing-storage">Warehousing & Storage</a>
-            <a href="services.html#international-relocation">International Relocation</a>
-            <a href="services.html#transit-insurance">Goods Transit Insurance</a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Headquarters & Contact</h4>
-          <div style="font-size: 0.8125rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.75rem;">
-            <div>
-              <strong style="color: var(--white);">Head Office:</strong><br>
-              S/N 01, Bilal Pada, PALGHAR Road, Nalasopara East - 401209, Maharashtra, India.
-            </div>
-            <div>
-              <strong style="color: var(--white);">Direct Helplines:</strong><br>
-              <a href="tel:+918218059678" style="color: #fb923c;">+91 8218059678</a> / 
-              <a href="tel:+919371482180" style="color: #fb923c;">+91 9371482180</a>
-            </div>
-            <div>
-              <strong style="color: var(--white);">Official Email:</strong><br>
-              <a href="mailto:shantanupackers@gmail.com" style="color: var(--slate-300);">shantanupackers@gmail.com</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>
-          &copy; 2026 Shantanu Packers and Movers. All Rights Reserved. Govt. MSME Reg: UDYAM-MH-17-0244739.
-        </div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="privacy-policy.html" style="color: var(--slate-400);">Privacy Policy</a>
-          <a href="terms-and-conditions.html" style="color: var(--slate-400);">Terms & Conditions</a>
-          <a href="contact.html" style="color: var(--slate-400);">Contact Us</a>
+        <h2 class="cta-strip-title reveal">Ready to Plan Your Move?</h2>
+        <p class="cta-strip-sub reveal">Get a free quote in 60 seconds. No obligation, no hidden charges.</p>
+        <div class="cta-strip-btns reveal">
+          <a href="quote.html" class="btn btn-secondary btn-lg"><i data-lucide="file-text"></i> Get Free Quote</a>
+          <a href="tel:+918218059678" class="btn btn-ghost btn-lg"><i data-lucide="phone-call"></i> Call Now</a>
         </div>
       </div>
     </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><img src="assets/images/logo.png" alt="" class="footer-logo-img"><div style="display:flex;flex-direction:column;line-height:1;margin-top:0.75rem;"><span class="footer-logo-name">SHANTANU</span><span class="footer-logo-tag">Packers &amp; Movers</span></div><p class="footer-desc">MSME-registered professional relocation experts since 2019.</p><div class="footer-msme"><i data-lucide="shield-check"></i> UDYAM-MH-17-0244739</div></div>
+        <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About Us</a><a href="services.html" class="footer-link">Services</a><a href="gallery.html" class="footer-link">Gallery</a><a href="pricing.html" class="footer-link">Pricing</a><a href="contact.html" class="footer-link">Contact</a></div></div>
+        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html" class="footer-link">Household Shifting</a><a href="services.html" class="footer-link">Office Relocation</a><a href="services.html" class="footer-link">Car Transportation</a><a href="services.html" class="footer-link">Warehouse / Storage</a></div></div>
+        <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><i data-lucide="map-pin"></i><span>Nalasopara East, MH - 401209</span></div><div class="footer-contact-item"><i data-lucide="phone-call"></i><span><a href="tel:+918218059678">+91 8218059678</a></span></div><div class="footer-contact-item"><i data-lucide="mail"></i><span><a href="mailto:shantanupackers@gmail.com">shantanupackers@gmail.com</a></span></div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">&copy; 2024 Shantanu Packers and Movers. All rights reserved.</div><div class="footer-bottom-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-and-conditions.html">Terms &amp; Conditions</a></div></div>
+    </div>
   </footer>
 
+  <div class="mobile-bottom-bar"><div class="mobile-bar-grid"><a href="tel:+918218059678" class="mbb-btn mbb-call"><i data-lucide="phone-call"></i>Call Now</a><a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="mbb-btn mbb-wa"><i data-lucide="message-circle"></i>WhatsApp</a><a href="quote.html" class="mbb-btn mbb-quote"><i data-lucide="file-text"></i>Get Free Quote</a></div></div>
+  <a href="https://wa.me/918218059678" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+
+  <script>
+    // Simple contact form handler
+    (function() {
+      const form = document.getElementById('contact-form');
+      const success = document.getElementById('contact-success');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('contact-submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        // Simulate send (no backend for contact form)
+        setTimeout(function() {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        }, 1000);
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -180,7 +180,7 @@
   async function handleQuoteSubmit(e) {
     e.preventDefault();
 
-    const submitBtn = document.getElementById('btn-submit-quote');
+    const submitBtn = document.getElementById('quote-submit-btn');
     const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Confirm Booking';
 
     const data = getFormData();
@@ -259,10 +259,36 @@
   }
 
   function displayQuoteSuccessReceipt(quote) {
-    const formCard = document.getElementById('quote-form-card');
-    const receiptContainer = document.getElementById('quote-receipt-card');
+    // Show the new success state in quote.html
+    const successState = document.getElementById('quote-success-state');
+    const form = document.getElementById('shantanu-quote-form');
+    const errorState = document.getElementById('quote-error-state');
 
-    if (formCard) formCard.style.display = 'none';
+    if (errorState) errorState.style.display = 'none';
+    if (form) form.style.display = 'none';
+    if (successState) {
+      successState.style.display = 'block';
+      successState.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    // Wire btn-new-quote
+    const btnNewQuote = document.getElementById('btn-new-quote');
+    if (btnNewQuote) {
+      btnNewQuote.addEventListener('click', function() {
+        if (successState) successState.style.display = 'none';
+        if (form) {
+          form.style.display = 'block';
+          form.reset();
+        }
+        const btn = document.getElementById('quote-submit-btn');
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i data-lucide="send"></i> Submit Free Quote Request'; }
+        if (window.lucide) window.lucide.createIcons();
+      });
+    }
+
+    // Legacy receipt container support (not present in new design)
+    const receiptContainer = document.getElementById('quote-receipt-card');
     if (receiptContainer) {
       receiptContainer.style.display = 'block';
       receiptContainer.innerHTML = `
