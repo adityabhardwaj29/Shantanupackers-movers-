@@ -1,8 +1,8 @@
 /**
- * ============================================================================
- * SHANTANU PACKERS AND MOVERS — CORE JAVASCRIPT
- * Fast, Robust, Zero Framework Bloat
- * ============================================================================
+ * =========================================================================
+ * SHANTANU PACKERS AND MOVERS — CORE APPLICATION JAVASCRIPT
+ * Pure Vanilla JavaScript — High Performance, Zero Framework Overhead
+ * =========================================================================
  */
 
 (function () {
@@ -10,81 +10,80 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initLucideIcons();
-    initStickyHeader();
     initMobileDrawer();
     initFaqAccordion();
-    initServicesTabs();
-    initQuickQuoteForm();
-    initGalleryFiltersAndModal();
+    initServiceTabs();
+    initHeroQuickForm();
+    initScrollReveal();
   });
 
-  // --- 1. Lucide Icons Initialization ---
+  // =========================================================================
+  // 1. LUCIDE ICONS INITIALIZATION
+  // =========================================================================
   function initLucideIcons() {
     if (typeof window.lucide !== 'undefined' && typeof window.lucide.createIcons === 'function') {
       window.lucide.createIcons();
     }
   }
 
-  // --- 2. Sticky Header Scroll Effect ---
-  function initStickyHeader() {
-    const header = document.getElementById('site-header');
-    if (!header) return;
-
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 20) {
-        header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
-      } else {
-        header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)';
-      }
-    }, { passive: true });
-  }
-
-  // --- 3. Mobile Navigation Drawer ---
+  // =========================================================================
+  // 2. MOBILE NAVIGATION DRAWER
+  // =========================================================================
   function initMobileDrawer() {
-    const btnOpen = document.getElementById('btn-hamburger');
-    const btnClose = document.getElementById('btn-close-drawer');
-    const drawerOverlay = document.getElementById('mobile-drawer-overlay');
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const drawer = document.getElementById('mobile-drawer');
+    const closeBtn = document.getElementById('drawer-close-btn');
+    const backdrop = document.getElementById('drawer-backdrop');
 
-    if (!drawerOverlay) return;
+    if (!drawer) return;
 
     function openDrawer() {
-      drawerOverlay.classList.add('open');
+      drawer.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'true');
     }
 
     function closeDrawer() {
-      drawerOverlay.classList.remove('open');
+      drawer.classList.remove('open');
       document.body.style.overflow = '';
+      if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
     }
 
-    if (btnOpen) btnOpen.addEventListener('click', openDrawer);
-    if (btnClose) btnClose.addEventListener('click', closeDrawer);
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
-    drawerOverlay.addEventListener('click', function (e) {
-      if (e.target === drawerOverlay) closeDrawer();
+    drawer.querySelectorAll('.drawer-link').forEach(function (link) {
+      link.addEventListener('click', closeDrawer);
     });
 
-    document.querySelectorAll('.m-nav-link').forEach(function (link) {
-      link.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
     });
   }
 
-  // --- 4. FAQ Accordion ---
+  // =========================================================================
+  // 3. FAQ ACCORDION
+  // =========================================================================
   function initFaqAccordion() {
     const faqItems = document.querySelectorAll('.faq-item');
     if (!faqItems.length) return;
 
     faqItems.forEach(function (item) {
-      const btn = item.querySelector('.faq-question-btn');
-      if (!btn) return;
+      const questionBtn = item.querySelector('.faq-question');
+      if (!questionBtn) return;
 
-      btn.addEventListener('click', function () {
+      questionBtn.addEventListener('click', function () {
         const isActive = item.classList.contains('active');
 
         // Close all other items
-        faqItems.forEach(function (other) { other.classList.remove('active'); });
+        faqItems.forEach(function (other) {
+          other.classList.remove('active');
+        });
 
-        // Toggle current item
+        // Toggle clicked
         if (!isActive) {
           item.classList.add('active');
         }
@@ -92,167 +91,147 @@
     });
   }
 
-  // --- 5. Services Filter Tabs ---
-  function initServicesTabs() {
-    const tabBtns = document.querySelectorAll('.svc-tab-btn');
-    const svcCards = document.querySelectorAll('.service-mrl-card');
+  // =========================================================================
+  // 4. SERVICE CATEGORY TABS
+  // =========================================================================
+  function initServiceTabs() {
+    const tabs = document.querySelectorAll('.service-tab-btn');
+    const cards = document.querySelectorAll('.mrl-service-card');
+    if (!tabs.length || !cards.length) return;
 
-    if (!tabBtns.length || !svcCards.length) return;
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
 
-    tabBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        tabBtns.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
+        const filter = tab.getAttribute('data-filter') || 'all';
 
-        const tab = btn.getAttribute('data-tab') || 'all';
-
-        svcCards.forEach(function (card) {
-          const cat = card.getAttribute('data-cat') || '';
-          if (tab === 'all' || cat === tab) {
+        cards.forEach(function (card) {
+          if (filter === 'all') {
             card.style.display = 'flex';
           } else {
-            card.style.display = 'none';
+            const title = card.querySelector('.srv-title')?.textContent.toLowerCase() || '';
+            if (
+              (filter === 'household' && title.includes('household')) ||
+              (filter === 'office' && title.includes('office')) ||
+              (filter === 'vehicle' && (title.includes('car') || title.includes('bike'))) ||
+              (filter === 'storage' && (title.includes('warehouse') || title.includes('storage') || title.includes('packing')))
+            ) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
           }
         });
       });
     });
   }
 
-  // --- 6. Hero Quick Quote Form Submission ---
-  function initQuickQuoteForm() {
-    const form = document.getElementById('hero-quick-quote-form');
-    const successMsg = document.getElementById('hq-success-message');
-    const submitBtn = document.getElementById('btn-hero-quote-submit');
-
-    // Pre-fill tomorrow's date for date picker
-    const dateInput = document.getElementById('hq-date');
-    if (dateInput) {
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      dateInput.min = tomorrow.toISOString().split('T')[0];
-      if (!dateInput.value) {
-        dateInput.value = tomorrow.toISOString().split('T')[0];
-      }
-    }
+  // =========================================================================
+  // 5. HERO INSTANT QUOTE FORM
+  // =========================================================================
+  function initHeroQuickForm() {
+    const form = document.getElementById('hero-normal-quote-form');
+    const successEl = document.getElementById('hero-quote-success');
+    const btnAgain = document.getElementById('btn-hero-quote-again');
 
     if (!form) return;
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const name = (document.getElementById('hq-name') || {}).value || '';
-      const phone = (document.getElementById('hq-phone') || {}).value || '';
-      const pickup = (document.getElementById('hq-pickup') || {}).value || '';
-      const drop = (document.getElementById('hq-drop') || {}).value || '';
-      const size = (document.getElementById('hq-size') || {}).value || '';
-      const moveDate = (document.getElementById('hq-date') || {}).value || '';
+      const nameVal = document.getElementById('hq-name')?.value.trim();
+      const phoneVal = document.getElementById('hq-phone')?.value.trim();
+      const fromVal = document.getElementById('hq-from')?.value.trim();
+      const toVal = document.getElementById('hq-to')?.value.trim();
+      const serviceVal = document.getElementById('hq-service')?.value;
+      const dateVal = document.getElementById('hq-date')?.value;
 
-      if (!name.trim() || !phone.trim() || !pickup.trim() || !drop.trim()) {
-        alert('Please fill in your Name, Mobile, Pickup and Drop locations.');
+      if (!nameVal || !phoneVal || !fromVal || !toVal) {
+        alert('Please fill in your Name, Phone number, Pickup, and Destination.');
         return;
       }
 
-      const cleanPhone = phone.replace(/[^0-9]/g, '');
+      const cleanPhone = phoneVal.replace(/[^0-9]/g, '');
       if (cleanPhone.length < 10) {
         alert('Please enter a valid 10-digit mobile number.');
         return;
       }
 
+      const submitBtn = document.getElementById('hero-quote-submit-btn');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i data-lucide="loader-2"></i> Submitting...';
-        initLucideIcons();
+        submitBtn.innerHTML = 'Securing Quote...';
       }
 
+      const quoteId = `STN-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
       const payload = {
-        full_name: name.trim(),
+        quote_id: quoteId,
+        full_name: nameVal,
         phone: cleanPhone,
-        pickup_location: pickup.trim(),
-        drop_location: drop.trim(),
-        vehicle_type: size,
-        moving_date: moveDate,
-        service_type: size.indexOf('Office') !== -1 ? 'Office Relocation' : (size.indexOf('Car') !== -1 || size.indexOf('Bike') !== -1 ? 'Vehicle Transport' : 'Household Shifting'),
-        notes: 'Submitted via Homepage Instant Quote form'
+        email: `${cleanPhone}@shantanupackers.com`,
+        pickup_location: fromVal,
+        drop_location: toVal,
+        moving_date: dateVal || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+        moving_time: 'Morning (7:30 AM - 10:30 AM)',
+        service_type: serviceVal || 'Household Shifting',
+        vehicle_type: serviceVal || '2 BHK Family Move',
+        floor_number: 'Ground Floor',
+        lift_available: true,
+        packing_required: 'Full Professional 4-Layer Packaging',
+        additional_notes: 'Submitted via Hero Instant Quote Form'
       };
 
-      // Send to Supabase Edge Function if available
       if (window.ShantanuDB && typeof window.ShantanuDB.submitQuoteRequest === 'function') {
         window.ShantanuDB.submitQuoteRequest(payload)
-          .then(function (res) {
-            handleSuccess();
-          })
-          .catch(function (err) {
-            console.warn('Fallback: direct submission', err);
-            handleSuccess();
-          });
+          .then(function () { showSuccess(); })
+          .catch(function () { showSuccess(); });
       } else {
-        setTimeout(handleSuccess, 600);
+        setTimeout(showSuccess, 600);
       }
 
-      function handleSuccess() {
+      function showSuccess() {
         form.style.display = 'none';
-        if (successMsg) {
-          successMsg.style.display = 'block';
-          initLucideIcons();
-        }
+        if (successEl) successEl.style.display = 'block';
+        if (typeof window.lucide !== 'undefined') window.lucide.createIcons();
       }
     });
-  }
 
-  // --- 7. Gallery Filters & Lightbox Modal ---
-  function initGalleryFiltersAndModal() {
-    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-    const items = document.querySelectorAll('.gallery-grid-item');
-    const modal = document.getElementById('lightbox-modal');
-    const modalImg = document.getElementById('lightbox-img');
-    const modalClose = document.getElementById('lightbox-close');
-
-    if (filterBtns.length && items.length) {
-      filterBtns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          filterBtns.forEach(function (b) { b.classList.remove('active'); });
-          btn.classList.add('active');
-
-          const filter = btn.getAttribute('data-filter') || 'all';
-
-          items.forEach(function (item) {
-            const cat = item.getAttribute('data-category') || '';
-            if (filter === 'all' || cat === filter) {
-              item.style.display = 'block';
-            } else {
-              item.style.display = 'none';
-            }
-          });
-        });
-      });
-    }
-
-    if (modal && modalImg) {
-      items.forEach(function (item) {
-        item.addEventListener('click', function () {
-          const img = item.querySelector('img');
-          if (img) {
-            modalImg.src = img.src;
-            modalImg.alt = img.alt;
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-          }
-        });
-      });
-
-      if (modalClose) {
-        modalClose.addEventListener('click', function () {
-          modal.classList.remove('open');
-          document.body.style.overflow = '';
-        });
-      }
-
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-          modal.classList.remove('open');
-          document.body.style.overflow = '';
+    if (btnAgain) {
+      btnAgain.addEventListener('click', function () {
+        if (successEl) successEl.style.display = 'none';
+        form.style.display = 'block';
+        form.reset();
+        const submitBtn = document.getElementById('hero-quote-submit-btn');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i data-lucide="sparkles" style="width:18px;height:18px;"></i> GET INSTANT SHIFTING QUOTE';
+          if (typeof window.lucide !== 'undefined') window.lucide.createIcons();
         }
       });
+    }
+  }
+
+  // =========================================================================
+  // 6. SCROLL REVEAL UTILITY
+  // =========================================================================
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    if (!reveals.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      reveals.forEach(function (el) { observer.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('visible'); });
     }
   }
 
