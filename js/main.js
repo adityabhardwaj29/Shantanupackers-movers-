@@ -9,6 +9,7 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', function () {
+    clearLegacyServiceWorkers();
     initLucideIcons();
     initMobileDrawer();
     initFaqAccordion();
@@ -16,6 +17,19 @@
     initHeroQuickForm();
     initScrollReveal();
   });
+
+  // =========================================================================
+  // 0. CLEAR LEGACY SERVICE WORKERS / STALE WORKBOX
+  // =========================================================================
+  function clearLegacyServiceWorkers() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (var i = 0; i < registrations.length; i++) {
+          registrations[i].unregister();
+        }
+      }).catch(function () {});
+    }
+  }
 
   // =========================================================================
   // 1. LUCIDE ICONS INITIALIZATION

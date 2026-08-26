@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2.2.0">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="js/supabase.js" defer></script>
-  <script src="js/quote.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/supabase.js?v=2.2.0" defer></script>
+  <script src="js/quote.js?v=2.2.0" defer></script>
+  <script src="js/main.js?v=2.2.0" defer></script>
 
   <style>
     .quote-engine-grid {
@@ -258,12 +258,12 @@
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
                   <div>
-                    <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Moving Date *</label>
-                    <input type="date" id="quote-moving-date" name="moving_date" class="input-ctrl" required>
+                    <label for="quote-moving-date" style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Moving Date *</label>
+                    <input type="date" id="quote-moving-date" name="moving_date" class="input-ctrl" title="Select Moving Date" aria-label="Select Moving Date" placeholder="dd-mm-yyyy" required>
                   </div>
                   <div>
-                    <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Preferred Time Slot</label>
-                    <select id="quote-moving-time" name="moving_time" class="input-ctrl">
+                    <label for="quote-moving-time" style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Preferred Time Slot</label>
+                    <select id="quote-moving-time" name="moving_time" class="input-ctrl" title="Select Preferred Time Slot" aria-label="Select Preferred Time Slot">
                       <option>Morning (7:30 AM - 10:30 AM)</option>
                       <option>Afternoon (11:00 AM - 2:00 PM)</option>
                       <option>Evening (3:00 PM - 7:00 PM)</option>
@@ -308,8 +308,8 @@
 
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;">
                   <div>
-                    <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Floor Level</label>
-                    <select id="quote-floor" name="floor_number" class="input-ctrl">
+                    <label for="quote-floor" style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Floor Level</label>
+                    <select id="quote-floor" name="floor_number" class="input-ctrl" title="Select Floor Level" aria-label="Select Floor Level">
                       <option>Ground Floor</option>
                       <option>1st Floor</option>
                       <option>2nd Floor</option>
@@ -318,8 +318,8 @@
                     </select>
                   </div>
                   <div>
-                    <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Elevator / Lift Available?</label>
-                    <select id="quote-lift" name="lift_available" class="input-ctrl">
+                    <label for="quote-lift" style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Elevator / Lift Available?</label>
+                    <select id="quote-lift" name="lift_available" class="input-ctrl" title="Select Elevator Availability" aria-label="Select Elevator Availability">
                       <option value="true">Yes — Lift Available</option>
                       <option value="false">No — No Lift</option>
                     </select>
@@ -327,8 +327,8 @@
                 </div>
 
                 <div style="margin-top:1rem;">
-                  <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Select Core Service Type</label>
-                  <select id="quote-service-type" name="service_type" class="input-ctrl">
+                  <label for="quote-service-type" style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Select Core Service Type</label>
+                  <select id="quote-service-type" name="service_type" class="input-ctrl" title="Select Core Service Type" aria-label="Select Core Service Type">
                     <option>Household Shifting</option>
                     <option>Office Relocation</option>
                     <option>Car Transportation</option>

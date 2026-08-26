@@ -45,14 +45,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2.2.0">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="js/supabase.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/supabase.js?v=2.2.0" defer></script>
+  <script src="js/main.js?v=2.2.0" defer></script>
 </head>
 <body>
 
@@ -261,7 +261,7 @@
                 </div>
 
                 <div class="quote-inputs-grid">
-                  <select id="hq-service" name="service_type" class="input-ctrl">
+                  <select id="hq-service" name="service_type" class="input-ctrl" title="Select Shifting Service" aria-label="Select Shifting Service">
                     <option value="1 BHK Shifting">1 BHK Shifting</option>
                     <option value="2 BHK Shifting" selected>2 BHK Shifting</option>
                     <option value="3 BHK Shifting">3 BHK Shifting</option>
@@ -269,7 +269,7 @@
                     <option value="Car / Bike Transport">Car / Bike Transport</option>
                     <option value="Warehouse Storage">Warehouse Storage</option>
                   </select>
-                  <input type="date" id="hq-date" name="moving_date" class="input-ctrl">
+                  <input type="date" id="hq-date" name="moving_date" class="input-ctrl" title="Select Preferred Moving Date" aria-label="Select Preferred Moving Date" placeholder="dd-mm-yyyy">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-full btn-lg" id="hero-quote-submit-btn" style="margin-top:0.35rem;">
