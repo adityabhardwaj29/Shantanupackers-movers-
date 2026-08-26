@@ -230,7 +230,7 @@
                 <div style="font-family:var(--font-head);font-size:0.88rem;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem;">
                   1. Contact Information
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+                <div class="grid-2-form">
                   <div>
                     <input type="text" id="quote-full-name" name="full_name" class="input-ctrl" placeholder="Your Full Name *" required autocomplete="name">
                   </div>
@@ -248,7 +248,7 @@
                 <div style="font-family:var(--font-head);font-size:0.88rem;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem;">
                   2. Route &amp; Schedule
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+                <div class="grid-2-form">
                   <div>
                     <input type="text" id="quote-pickup" name="pickup_location" class="input-ctrl" placeholder="Pickup (e.g. Nalasopara East) *" required autocomplete="off">
                   </div>
@@ -256,7 +256,7 @@
                     <input type="text" id="quote-drop" name="drop_location" class="input-ctrl" placeholder="Destination (e.g. Pune / Mumbai) *" required autocomplete="off">
                   </div>
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                <div class="grid-2-form">
                   <div>
                     <label for="quote-moving-date" style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Moving Date *</label>
                     <input type="date" id="quote-moving-date" name="moving_date" class="input-ctrl" title="Select Moving Date" aria-label="Select Moving Date" placeholder="dd-mm-yyyy" required>
@@ -306,7 +306,7 @@
                 </div>
                 <input type="hidden" id="quote-vehicle-type" name="vehicle_type" value="1 BHK Family Move">
 
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;">
+                <div class="grid-2-form" style="margin-top:1rem;">
                   <div>
                     <label for="quote-floor" style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.25rem;">Floor Level</label>
                     <select id="quote-floor" name="floor_number" class="input-ctrl" title="Select Floor Level" aria-label="Select Floor Level">
