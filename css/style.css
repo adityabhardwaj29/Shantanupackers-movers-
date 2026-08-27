@@ -113,8 +113,17 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .container {
   width: 100%;
   max-width: var(--max-w);
-  margin-inline: auto;
-  padding-inline: clamp(1rem, 3.5vw, 2.5rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 3.5vw, 2.5rem);
+  padding-right: clamp(1rem, 3.5vw, 2.5rem);
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .section { padding: clamp(3rem, 6vw, 4.5rem) 0; }
@@ -584,18 +593,23 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 .hero-split-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: clamp(1.25rem, 2.5vw, 1.75rem);
   align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
 }
 @media (max-width: 992px) {
   .hero-split-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 /* Left Hero Card (Light Orange Background) */
 .hero-left-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: linear-gradient(145deg, #FFF7ED 0%, #FFEDD5 100%);
   border: 1.5px solid var(--primary-border);
   border-radius: var(--r-2xl);
@@ -749,6 +763,9 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* Right Hero Card: Instant Quote */
 .hero-quote-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: #FFFFFF;
   border: 1.5px solid var(--border-light);
   border-radius: var(--r-2xl);
